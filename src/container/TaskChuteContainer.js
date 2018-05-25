@@ -12,6 +12,7 @@ class TaskChuteContainer extends Component {
         <div className="task-chute">
           <div className="column">
             <div className="column__title">title</div>
+            <input className="column__input" />
             <ul className="column__list">
               <li className="column__item">ひとつめ</li>
               <li className="column__item">ふたつめ</li>
