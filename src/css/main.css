@@ -1,0 +1,32 @@
+button:focus {
+  outline: none;
+}
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #eff3f3;
+}
+.task-chute {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 20rem;
+  justify-content: space-around;
+}
+.column {
+  width: 8rem;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 0.1rem;
+  filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.6));
+}
+.item-list {
+  padding-left: 2rem;
+  padding-right: 1rem;
+}
+.item {
+  width: 100%;
+  background-color: #befcd8;
+}

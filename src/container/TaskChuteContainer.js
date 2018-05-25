@@ -3,13 +3,21 @@ import React, { Component } from 'react';
 // import { bindActionCreators } from 'redux';
 
 // import * as actions from '../actions';
-// import '../css/main.css';
+import '../css/main.css';
 
 class TaskChuteContainer extends Component {
   render() {
     return (
-      <div>
-        
+      <div className="body">
+        <div className="task-chute">
+          <div className="column">
+            <div>title</div>
+            <ul className="item-list">
+              <li className="item">ひとつめ</li>
+              <li className="item">ふたつめ</li>
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }
