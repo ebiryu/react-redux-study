@@ -11,10 +11,10 @@ class TaskChuteContainer extends Component {
       <div className="body">
         <div className="task-chute">
           <div className="column">
-            <div>title</div>
-            <ul className="item-list">
-              <li className="item">ひとつめ</li>
-              <li className="item">ふたつめ</li>
+            <div className="column__title">title</div>
+            <ul className="column__list">
+              <li className="column__item">ひとつめ</li>
+              <li className="column__item">ふたつめ</li>
             </ul>
           </div>
         </div>
