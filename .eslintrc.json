@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "amd": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 8
+  },
+  "rules": {
+    "no-console": "off",
+    "indent": ["error", 2]
+  },
+  "globals": {
+    "exports": true,
+    "process": true,
+    "module": true
+  }
+}
