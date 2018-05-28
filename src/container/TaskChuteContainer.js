@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions';
 import '../css/main.css';
 
-class TaskChuteContainer extends Component {
+class TaskChuteContainer extends React.Component {
   render() {
     return (
       <div className="body">
@@ -24,12 +24,12 @@ class TaskChuteContainer extends Component {
   }
 }
 
-const mapState = (state, ownProps) => ({
-  ...state
+const mapStateToProps = (state) => ({
+  state
 })
 
-const mapDispatch = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapState,mapDispatch)(TaskChuteContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(TaskChuteContainer);

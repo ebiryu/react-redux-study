@@ -6,8 +6,11 @@
   },
   "extends": "eslint:recommended",
   "parserOptions": {
+    "ecmaVersion": 8,
     "sourceType": "module",
-    "ecmaVersion": 8
+    "ecmaFeatures": {
+        "jsx": true
+    }
   },
   "rules": {
     "no-console": "off",
