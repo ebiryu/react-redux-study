@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import ColumnItem from '../components/ColumnItem';
 import * as actions from '../actions';
 import '../css/main.css';
 
@@ -14,8 +15,8 @@ class TaskChuteContainer extends React.Component {
             <div className="column__title">title</div>
             <input className="column__input" />
             <ul className="column__list">
-              <li className="column__item">ひとつめ</li>
-              <li className="column__item">ふたつめ</li>
+              <ColumnItem n={"ひとつめ"} />
+              <ColumnItem n={"ふたつめ"} />
             </ul>
           </div>
         </div>
