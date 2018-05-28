@@ -1,0 +1,1 @@
+export const singleTaskDone = 'SINGLE_TASK_DONE';
