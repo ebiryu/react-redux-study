@@ -15,19 +15,6 @@ const initialColumnState = [
       }
     ]
   },
-  {
-    inputValue: "",
-    tasks: [
-      {
-        name: "みっつめ",
-        isDone: false,
-      },
-      {
-        name: "よっつめ",
-        isDone: true,
-      }
-    ]
-  },
 ];
 
 const columns = (state = initialColumnState, action) => {
