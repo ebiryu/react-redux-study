@@ -26,10 +26,13 @@ li {
   overflow-x: scroll;
 }
 .column {
+  display: flex;
+  flex-flow: column;
   width: 12rem;
   height: fit-content;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  max-height: 85vh;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   margin-bottom: 1rem;
   background-color: #ffffff;
   border-radius: 0.1rem;
@@ -59,7 +62,6 @@ li {
   color: #7ea38e;
 }
 .column__form {
-  display: flex;
   position: relative;
   margin-top: 1rem;
   margin-left: 1rem;
@@ -94,11 +96,14 @@ li {
   cursor: pointer;
 }
 .column__list {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  height: 100%;
+  overflow-y: scroll;
+  margin-bottom: 0rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
 }
 .column__item {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   width: auto;
   background-color: #befcd8;
