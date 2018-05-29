@@ -64,6 +64,7 @@ li {
   border-radius: 2rem;
   font-size: 1rem;
   box-shadow: 0px 2px 2px 0.5px rgba(0,0,0,0.6);
+  cursor: pointer;
 }
 .column__list {
   padding-left: 1rem;
