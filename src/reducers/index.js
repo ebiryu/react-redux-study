@@ -29,7 +29,7 @@ const column = (state = initialColumnState, action) => {
   case actionTypes.addNewTask:
     action.event.preventDefault();
     return {
-      ...state,
+      inputValue: '',
       tasks: [
         {
           name: action.submittedValue,
@@ -37,6 +37,12 @@ const column = (state = initialColumnState, action) => {
         },
         ...state.tasks
       ]
+    };
+  case actionTypes.inputTask:
+    // action.event.preventDefault();
+    return {
+      ...state,
+      inputValue: action.event.target.value,
     };
   default:
     return state;

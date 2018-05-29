@@ -10,3 +10,8 @@ export const onSubmitTask = (submittedValue, event) => ({
   submittedValue,
   event,
 });
+
+export const onInputTask = (event) => ({
+  type: actionTypes.inputTask,
+  event,
+});

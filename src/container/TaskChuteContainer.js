@@ -15,8 +15,8 @@ class TaskChuteContainer extends React.Component {
         <div className="task-chute">
           <div className="column">
             <div className="column__title">title</div>
-            <form className="column__form" onSubmit={(event) => actions.onSubmitTask('test_value',event)}>
-              <input className="column__input" />
+            <form className="column__form" onSubmit={(event) => actions.onSubmitTask(column.inputValue,event)}>
+              <input className="column__input" value={column.inputValue} onChange={event => actions.onInputTask(event)} />
               <button className="column__submit-button" type="submit">+</button>
             </form>
             <ul className="column__list">
