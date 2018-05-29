@@ -20,6 +20,15 @@ const items = (state = initialState, action) => {
         ? {...item, isDone: !item.isDone}
         : item
     );
+  case actionTypes.addNewTask:
+    action.event.preventDefault();
+    return [
+      {
+        name: action.submittedValue,
+        isDone: false,
+      },
+      ...state
+    ]
   default:
     return state;
   }

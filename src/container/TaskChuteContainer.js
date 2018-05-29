@@ -8,11 +8,6 @@ import * as actions from '../actions';
 import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
-  handleSubmit (event) {
-    window.alert('Inputted value: ');
-    event.preventDefault();
-  }
-
   render() {
     const { items, actions } = this.props;
     return (
@@ -20,7 +15,7 @@ class TaskChuteContainer extends React.Component {
         <div className="task-chute">
           <div className="column">
             <div className="column__title">title</div>
-            <form className="column__form" onSubmit={this.handleSubmit}>
+            <form className="column__form" onSubmit={(event) => actions.onSubmitTask('test_value',event)}>
               <input className="column__input" />
               <button className="column__submit-button" type="submit">+</button>
             </form>

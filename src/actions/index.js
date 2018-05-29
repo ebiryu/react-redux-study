@@ -4,3 +4,9 @@ export const onItemClick = (taskNumber) => ({
   type: actionTypes.singleTaskDone,
   taskNumber,
 });
+
+export const onSubmitTask = (submittedValue, event) => ({
+  type: actionTypes.addNewTask,
+  submittedValue,
+  event,
+});
