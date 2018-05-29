@@ -13,12 +13,14 @@ class TaskChuteContainer extends React.Component {
     return (
       <div className="body">
         <div className="task-chute">
-          <div className="column column__empty"></div>
-          { columns.map( (column, index) => {
-            return <Column key={index} columnNumber={index} columnState={columns[index]} actions={actions} />
-          }) }
-          <div className="column column__empty--next" onClick={actions.onClickAddColumn}>
-            <div className="column__title--next">add column</div>
+          <div className="column-master">
+            {/* <div className="column column__empty"></div> */}
+            { columns.map( (column, index) => {
+              return <Column key={index} columnNumber={index} columnState={columns[index]} actions={actions} />
+            }) }
+            <div className="column column__empty--next" onClick={actions.onClickAddColumn}>
+              <div className="column__title--next">add column</div>
+            </div>
           </div>
         </div>
       </div>
