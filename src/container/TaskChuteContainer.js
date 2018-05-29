@@ -9,13 +9,14 @@ import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
   render() {
-    const { column, actions } = this.props;
+    const { columns, actions } = this.props;
     return (
       <div className="body">
         <div className="task-chute">
           <div className="column column__empty"></div>
-          <Column key={0} columnNumber={0} columnState={column[0]} actions={actions}/>
-          <Column key={1} columnNumber={1} columnState={column[1]} actions={actions}/>
+          { columns.map( (column, index) => {
+            return <Column key={index} columnNumber={index} columnState={columns[index]} actions={actions} />
+          }) }
           <div className="column column__empty--next">
             <div className="column__title--next">add column</div>
           </div>
@@ -26,12 +27,12 @@ class TaskChuteContainer extends React.Component {
 }
 
 TaskChuteContainer.propTypes = {
-  column: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  column: state.column,
+  columns: state.columns,
 })
 
 const mapDispatchToProps = (dispatch) => ({

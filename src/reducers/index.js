@@ -19,18 +19,18 @@ const initialColumnState = [
     inputValue: "",
     tasks: [
       {
-        name: "ひとつめ",
+        name: "みっつめ",
         isDone: false,
       },
       {
-        name: "ふたつめ",
+        name: "よっつめ",
         isDone: true,
       }
     ]
   },
 ];
 
-const column = (state = initialColumnState, action) => {
+const columns = (state = initialColumnState, action) => {
   switch (action.type) {
   case actionTypes.singleTaskDone:
     return state.map((column,index) => 
@@ -77,7 +77,7 @@ const column = (state = initialColumnState, action) => {
 }
 
 const reducer = combineReducers({
-  column,
+  columns,
 });
 
 export default reducer;
