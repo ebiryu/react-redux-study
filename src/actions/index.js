@@ -18,3 +18,7 @@ export const onInputTask = (columnNumber, event) => ({
   event,
   columnNumber,
 });
+
+export const onClickAddColumn = () => ({
+  type: actionTypes.addNewColumn,
+});

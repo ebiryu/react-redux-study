@@ -71,6 +71,14 @@ const columns = (state = initialColumnState, action) => {
         }
         : column
     );
+  case actionTypes.addNewColumn:
+    return [
+      ...state,
+      {
+        inputValue: "",
+        tasks: []
+      },
+    ]
   default:
     return state;
   }
