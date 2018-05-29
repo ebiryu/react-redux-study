@@ -9,7 +9,7 @@ import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
   render() {
-    const { items, actions } = this.props;
+    const { column, actions } = this.props;
     return (
       <div className="body">
         <div className="task-chute">
@@ -20,8 +20,8 @@ class TaskChuteContainer extends React.Component {
               <button className="column__submit-button" type="submit">+</button>
             </form>
             <ul className="column__list">
-              { items.map( (item, index) => {
-                return <ColumnItem key={index} n={item.name} isDone={item.isDone} onClick={() => actions.onItemClick(index)} />
+              { column.tasks.map( (task, index) => {
+                return <ColumnItem key={index} n={task.name} isDone={task.isDone} onClick={() => actions.onItemClick(index)} />
               }) }
             </ul>
           </div>
@@ -32,12 +32,12 @@ class TaskChuteContainer extends React.Component {
 }
 
 TaskChuteContainer.propTypes = {
-  items: PropTypes.array.isRequired,
+  column: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  items: state.items,
+  column: state.column,
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,41 +1,50 @@
 import * as actionTypes from '../utils/actionTypes';
 import { combineReducers } from 'redux';
 
-const initialState = [
-  {
-    name: "ひとつめ",
-    isDone: false,
-  },
-  {
-    name: "ふたつめ",
-    isDone: true,
-  }
-];
+const initialColumnState = {
+  inputValue: "",
+  tasks: [
+    {
+      name: "ひとつめ",
+      isDone: false,
+    },
+    {
+      name: "ふたつめ",
+      isDone: true,
+    }
+  ]
+};
 
-const items = (state = initialState, action) => {
+const column = (state = initialColumnState, action) => {
   switch (action.type) {
   case actionTypes.singleTaskDone:
-    return state.map((item,index) =>
-      (index === action.taskNumber)
-        ? {...item, isDone: !item.isDone}
-        : item
-    );
+    return {
+      ...state,
+      tasks: state.tasks.map((task,index) =>
+        (index === action.taskNumber)
+          ? {...task, isDone: !task.isDone}
+          : task
+      ),
+    };
   case actionTypes.addNewTask:
     action.event.preventDefault();
-    return [
-      {
-        name: action.submittedValue,
-        isDone: false,
-      },
-      ...state
-    ]
+    return {
+      ...state,
+      tasks: [
+        {
+          name: action.submittedValue,
+          isDone: false,
+        },
+        ...state.tasks
+      ]
+    };
   default:
     return state;
   }
 }
 
 const reducer = combineReducers({
-  items,
+  column,
 });
 
 export default reducer;
