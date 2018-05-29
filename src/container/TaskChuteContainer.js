@@ -13,6 +13,7 @@ class TaskChuteContainer extends React.Component {
     return (
       <div className="body">
         <div className="task-chute">
+          <div className="column column__empty"></div>
           <div className="column">
             <div className="column__title">title</div>
             <form className="column__form" onSubmit={(event) => actions.onSubmitTask(column.inputValue,event)}>
@@ -24,6 +25,9 @@ class TaskChuteContainer extends React.Component {
                 return <ColumnItem key={index} n={task.name} isDone={task.isDone} onClick={() => actions.onItemClick(index)} />
               }) }
             </ul>
+          </div>
+          <div className="column column__empty--next">
+            <div className="column__title--next">add column</div>
           </div>
         </div>
       </div>
