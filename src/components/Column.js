@@ -16,7 +16,16 @@ const Column = ({columnNumber, columnState, actions}) => (
     </form>
     <ul className="column__list">
       { columnState.tasks.map( (task, index) => {
-        return <ColumnItem key={index} n={task.name} isDone={task.isDone} onClick={() => actions.onItemClick(columnNumber,index)} />
+        return (
+          <ColumnItem key={index}
+            n={task.name}
+            isDone={task.isDone}
+            isHovered={task.isHovered}
+            onClick={() => actions.onItemClick(columnNumber,index)}
+            onMouseEnter={() => actions.onMouseEnterItem(columnNumber,index)}
+            onMouseLeave={() => actions.onMouseLeaveItem(columnNumber,index)}
+          />
+        )
       }) }
     </ul>
   </div>

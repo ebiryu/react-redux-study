@@ -6,6 +6,18 @@ export const onItemClick = (columnNumber, taskNumber) => ({
   columnNumber,
 });
 
+export const onMouseEnterItem = (columnNumber, taskNumber) => ({
+  type: actionTypes.onMouseEnterItem,
+  columnNumber,
+  taskNumber,
+});
+
+export const onMouseLeaveItem = (columnNumber, taskNumber) => ({
+  type: actionTypes.onMouseLeaveItem,
+  columnNumber,
+  taskNumber,
+});
+
 export const onSubmitTask = (columnNumber, submittedValue, event) => ({
   type: actionTypes.addNewTask,
   submittedValue,

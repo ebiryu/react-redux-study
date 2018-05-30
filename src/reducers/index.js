@@ -10,10 +10,12 @@ const initialColumnState = [
       {
         name: "ひとつめ",
         isDone: false,
+        isHovered: false,
       },
       {
         name: "ふたつめ",
         isDone: true,
+        isHovered: false,
       }
     ]
   },
@@ -34,16 +36,44 @@ const columns = (state = initialColumnState, action) => {
         }
         : column
     );
+  case actionTypes.onMouseEnterItem:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          tasks: column.tasks.map((task,index) =>
+            (index === action.taskNumber)
+              ? {...task, isHovered: true}
+              : task
+          ),
+        }
+        : column
+    );
+  case actionTypes.onMouseLeaveItem:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          tasks: column.tasks.map((task,index) =>
+            (index === action.taskNumber)
+              ? {...task, isHovered: false}
+              : task
+          ),
+        }
+        : column
+    );
   case actionTypes.addNewTask:
     action.event.preventDefault();
     return state.map((column,index) => 
       (index === action.columnNumber)
         ? {
+          ...column,
           inputValue: '',
           tasks: [
             {
               name: action.submittedValue,
               isDone: false,
+              isHovered: false,
             },
             ...column.tasks
           ]
