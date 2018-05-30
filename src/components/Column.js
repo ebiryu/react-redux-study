@@ -4,7 +4,12 @@ import ColumnItem from '../components/ColumnItem';
 
 const Column = ({columnNumber, columnState, actions}) => (
   <div className="column">
-    <div className="column__title">title</div>
+    <input className="column__title"
+      onFocus={() => actions.onClickColumnTitle(columnNumber)}
+      onBlur={() => actions.onClickColumnTitle(columnNumber)}
+      onChange={event => actions.onChangeColumnTitle(columnNumber,event)}
+      value={columnState.columnTitle}
+    />
     <form className="column__form" onSubmit={(event) => actions.onSubmitTask(columnNumber,columnState.inputValue,event)}>
       <input className="column__input" value={columnState.inputValue} onChange={event => actions.onInputTask(columnNumber,event)} />
       <button className="column__submit-button" type="submit">+</button>

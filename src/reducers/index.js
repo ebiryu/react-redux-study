@@ -3,6 +3,8 @@ import { combineReducers } from 'redux';
 
 const initialColumnState = [
   {
+    isTitleEditable: false,
+    columnTitle: "title",
     inputValue: "",
     tasks: [
       {
@@ -62,10 +64,30 @@ const columns = (state = initialColumnState, action) => {
     return [
       ...state,
       {
+        isTitleEditable: false,
+        columnTitle: "title",
         inputValue: "",
-        tasks: []
+        tasks: [],
       },
     ]
+  case actionTypes.editColumnTitle:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          columnTitle: action.event.target.value,
+        }
+        : column
+    );
+  case actionTypes.onClickColumnTitle:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          isTitleEditable: !column.isTitleEditable,
+        }
+        : column
+    );
   default:
     return state;
   }
