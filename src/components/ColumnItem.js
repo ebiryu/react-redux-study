@@ -7,7 +7,6 @@ class ColumnItem extends React.Component {
     this.focused = React.createRef();
   }
   componentDidUpdate() {
-    console.log(this.focused);
     if (this.focused.current) {
       this.focused.current.focus();
     }
@@ -23,7 +22,7 @@ class ColumnItem extends React.Component {
             : <span className="column__item-text">{n}</span>
           }
         </div>
-        { (isHovered)
+        { (isHovered && !isTaskEditable)
           ? <span className="column__item-edit" onClick={onClickEditItem}>✏</span>
           : <span></span>
         }
