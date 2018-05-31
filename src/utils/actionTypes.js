@@ -6,3 +6,6 @@ export const editColumnTitle = 'EDIT_COLUMN_TITLE';
 export const onClickColumnTitle = 'ON_CLICK_COLUMN_TITLE';
 export const onMouseEnterItem = 'ON_HOVER_ITEM';
 export const onMouseLeaveItem = 'ON_HOVER_OUT_ITEM';
+export const onClickEditItem = 'ON_CLICK_EDIT_ITEM';
+export const onEditItem = 'ON_EDIT_ITEM';
+export const onBlurItem = 'ON_BLUR_ITEM';

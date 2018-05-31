@@ -21,9 +21,13 @@ const Column = ({columnNumber, columnState, actions}) => (
             n={task.name}
             isDone={task.isDone}
             isHovered={task.isHovered}
+            isTaskEditable={task.isTaskEditable}
             onClick={() => actions.onItemClick(columnNumber,index)}
             onMouseEnter={() => actions.onMouseEnterItem(columnNumber,index)}
             onMouseLeave={() => actions.onMouseLeaveItem(columnNumber,index)}
+            onClickEditItem={() => actions.onClickEditItem(columnNumber,index)}
+            onBlurItem={() => actions.onBlurItem(columnNumber,index)}
+            onEditItem={(event) => actions.onEditItem(columnNumber,index,event)}
           />
         )
       }) }

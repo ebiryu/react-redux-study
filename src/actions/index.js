@@ -18,6 +18,25 @@ export const onMouseLeaveItem = (columnNumber, taskNumber) => ({
   taskNumber,
 });
 
+export const onClickEditItem = (columnNumber, taskNumber) => ({
+  type: actionTypes.onClickEditItem,
+  columnNumber,
+  taskNumber,
+});
+
+export const onBlurItem = (columnNumber, taskNumber) => ({
+  type: actionTypes.onBlurItem,
+  columnNumber,
+  taskNumber,
+});
+
+export const onEditItem = (columnNumber, taskNumber, event) => ({
+  type: actionTypes.onEditItem,
+  columnNumber,
+  taskNumber,
+  editString: event.target.value,
+});
+
 export const onSubmitTask = (columnNumber, submittedValue, event) => ({
   type: actionTypes.addNewTask,
   submittedValue,

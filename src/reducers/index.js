@@ -11,11 +11,13 @@ const initialColumnState = [
         name: "ひとつめ",
         isDone: false,
         isHovered: false,
+        isTaskEditable: false,
       },
       {
         name: "ふたつめ",
         isDone: true,
         isHovered: false,
+        isTaskEditable: false,
       }
     ]
   },
@@ -62,6 +64,49 @@ const columns = (state = initialColumnState, action) => {
         }
         : column
     );
+  case actionTypes.onClickEditItem:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          tasks: column.tasks.map((task,index) =>
+            (index === action.taskNumber)
+              ? {...task,
+                isTaskEditable: true,
+              }
+              : task
+          ),
+        }
+        : column
+    );
+  case actionTypes.onBlurItem:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          tasks: column.tasks.map((task,index) =>
+            (index === action.taskNumber)
+              ? {...task,
+                isTaskEditable: false,
+              }
+              : task
+          ),
+        }
+        : column
+    );
+  case actionTypes.onEditItem:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          tasks: column.tasks.map((task,index) =>
+            (index === action.taskNumber)
+              ? {...task, name: action.editString}
+              : task
+          ),
+        }
+        : column
+    );
   case actionTypes.addNewTask:
     action.event.preventDefault();
     return state.map((column,index) => 
@@ -74,6 +119,7 @@ const columns = (state = initialColumnState, action) => {
               name: action.submittedValue,
               isDone: false,
               isHovered: false,
+              isTaskEditable: false,
             },
             ...column.tasks
           ]
