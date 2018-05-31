@@ -30,11 +30,11 @@ export const onBlurItem = (columnNumber, taskNumber) => ({
   taskNumber,
 });
 
-export const onEditItem = (columnNumber, taskNumber, event) => ({
+export const onEditItem = (columnNumber, taskNumber, editString) => ({
   type: actionTypes.onEditItem,
   columnNumber,
   taskNumber,
-  editString: event.target.value,
+  editString,
 });
 
 export const onSubmitTask = (columnNumber, submittedValue, event) => ({
@@ -44,9 +44,9 @@ export const onSubmitTask = (columnNumber, submittedValue, event) => ({
   columnNumber,
 });
 
-export const onInputTask = (columnNumber, event) => ({
+export const onInputTask = (columnNumber, inputTask) => ({
   type: actionTypes.inputTask,
-  event,
+  inputTask,
   columnNumber,
 });
 
@@ -54,10 +54,10 @@ export const onClickAddColumn = () => ({
   type: actionTypes.addNewColumn,
 });
 
-export const onChangeColumnTitle = (columnNumber, event) => ({
+export const onChangeColumnTitle = (columnNumber, changedColumnTitle) => ({
   type: actionTypes.editColumnTitle,
   columnNumber,
-  event,
+  changedColumnTitle,
 });
 
 export const onClickColumnTitle = (columnNumber) => ({

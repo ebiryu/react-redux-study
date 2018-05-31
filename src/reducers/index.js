@@ -127,12 +127,11 @@ const columns = (state = initialColumnState, action) => {
         : column
     );
   case actionTypes.inputTask:
-    // action.event.preventDefault();
     return state.map((column,index) => 
       (index === action.columnNumber)
         ? {
           ...column,
-          inputValue: action.event.target.value,
+          inputValue: action.inputTask,
         }
         : column
     );
@@ -151,7 +150,7 @@ const columns = (state = initialColumnState, action) => {
       (index === action.columnNumber)
         ? {
           ...column,
-          columnTitle: action.event.target.value,
+          columnTitle: action.changedColumnTitle,
         }
         : column
     );

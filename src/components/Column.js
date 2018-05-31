@@ -20,7 +20,7 @@ class Column extends React.Component {
           ? <form onSubmit={() => actions.onClickColumnTitle(columnNumber)}>
             <input className="column__title"
               onBlur={() => actions.onClickColumnTitle(columnNumber)}
-              onChange={event => actions.onChangeColumnTitle(columnNumber,event)}
+              onChange={event => actions.onChangeColumnTitle(columnNumber, event.target.value)}
               value={columnState.columnTitle}
               ref={this.focused}
             />
@@ -30,7 +30,7 @@ class Column extends React.Component {
           >{columnState.columnTitle}</span>
         }
         <form className="column__form" onSubmit={(event) => actions.onSubmitTask(columnNumber,columnState.inputValue,event)}>
-          <input className="column__input" value={columnState.inputValue} onChange={event => actions.onInputTask(columnNumber,event)} />
+          <input className="column__input" value={columnState.inputValue} onChange={event => actions.onInputTask(columnNumber, event.target.value)} />
           <button className="column__submit-button" type="submit">+</button>
         </form>
         <ul className="column__list">
@@ -46,7 +46,7 @@ class Column extends React.Component {
                 onMouseLeave={() => actions.onMouseLeaveItem(columnNumber,index)}
                 onClickEditItem={() => actions.onClickEditItem(columnNumber,index)}
                 onBlurItem={() => actions.onBlurItem(columnNumber,index)}
-                onEditItem={(event) => actions.onEditItem(columnNumber,index,event)}
+                onEditItem={event => actions.onEditItem(columnNumber,index,event.target.value)}
               />
             )
           }) }
