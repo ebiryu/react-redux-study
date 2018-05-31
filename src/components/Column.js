@@ -24,7 +24,7 @@ class Column extends React.Component {
           ? <form onSubmit={() => actions.onClickColumnTitle(columnNumber)}>
             <input className="column__title"
               onBlur={() => actions.onClickColumnTitle(columnNumber)}
-              onChange={event => actions.onChangeColumnTitle(columnNumber, event.target.value)}
+              onChange={event => actions.editColumnTitle(columnNumber, event.target.value)}
               value={columnState.columnTitle}
               ref={this.focused}
             />
@@ -45,7 +45,7 @@ class Column extends React.Component {
                 isDone={task.isDone}
                 isHovered={task.isHovered}
                 isTaskEditable={task.isTaskEditable}
-                onClick={() => actions.onItemClick(columnNumber,index)}
+                onClick={() => actions.onClickTask(columnNumber,index)}
                 onMouseEnter={() => actions.onMouseEnterItem(columnNumber,index)}
                 onMouseLeave={() => actions.onMouseLeaveItem(columnNumber,index)}
                 onClickEditItem={() => actions.onClickEditItem(columnNumber,index)}

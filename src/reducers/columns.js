@@ -24,7 +24,7 @@ const initialColumnState = [
 
 const columns = (state = initialColumnState, action) => {
   switch (action.type) {
-  case actionTypes.singleTaskDone:
+  case actionTypes.onClickTask:
     return state.map((column,index) => 
       (index === action.columnNumber)
         ? {
@@ -106,7 +106,7 @@ const columns = (state = initialColumnState, action) => {
         }
         : column
     );
-  case actionTypes.addNewTask:
+  case actionTypes.onSubmitTask:
     return state.map((column,index) => 
       (index === action.columnNumber)
         ? {
@@ -124,7 +124,7 @@ const columns = (state = initialColumnState, action) => {
         }
         : column
     );
-  case actionTypes.inputTask:
+  case actionTypes.onInputTask:
     return state.map((column,index) => 
       (index === action.columnNumber)
         ? {

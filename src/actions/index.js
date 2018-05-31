@@ -1,7 +1,7 @@
 import * as actionTypes from '../utils/actionTypes';
 
-export const onItemClick = (columnNumber, taskNumber) => ({
-  type: actionTypes.singleTaskDone,
+export const onClickTask = (columnNumber, taskNumber) => ({
+  type: actionTypes.onClickTask,
   taskNumber,
   columnNumber,
 });
@@ -38,22 +38,22 @@ export const onEditItem = (columnNumber, taskNumber, editString) => ({
 });
 
 export const onSubmitTask = (columnNumber, submittedValue) => ({
-  type: actionTypes.addNewTask,
+  type: actionTypes.onSubmitTask,
   submittedValue,
   columnNumber,
 });
 
 export const onInputTask = (columnNumber, inputTask) => ({
-  type: actionTypes.inputTask,
+  type: actionTypes.onInputTask,
   inputTask,
   columnNumber,
 });
 
-export const onClickAddColumn = () => ({
+export const addNewColumn = () => ({
   type: actionTypes.addNewColumn,
 });
 
-export const onChangeColumnTitle = (columnNumber, changedColumnTitle) => ({
+export const editColumnTitle = (columnNumber, changedColumnTitle) => ({
   type: actionTypes.editColumnTitle,
   columnNumber,
   changedColumnTitle,
