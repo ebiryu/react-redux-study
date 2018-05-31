@@ -37,7 +37,7 @@ class Column extends React.Component {
           { columnState.tasks.map( (task, index) => {
             return (
               <ColumnItem key={index}
-                n={task.name}
+                taskName={task.name}
                 isDone={task.isDone}
                 isHovered={task.isHovered}
                 isTaskEditable={task.isTaskEditable}

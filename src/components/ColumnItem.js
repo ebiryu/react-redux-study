@@ -12,16 +12,16 @@ class ColumnItem extends React.Component {
     }
   }
   render() {
-    const {n, isDone, isHovered, isTaskEditable, onClick, onMouseEnter, onMouseLeave, onClickEditItem, onBlurItem, onEditItem} = this.props;
+    const {taskName, isDone, isHovered, isTaskEditable, onClick, onMouseEnter, onMouseLeave, onClickEditItem, onBlurItem, onEditItem} = this.props;
     const classIsDone = isDone ? "column__item--done" : "";
     return (
       <li className="column__li" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={`column__item ${classIsDone}`} onClick={onClick}>
           { (isTaskEditable)
             ? <form onSubmit={onBlurItem}>
-              <input className="column__item-text" onChange={onEditItem} onBlur={onBlurItem} value={n} ref={this.focused}/>
+              <input className="column__item-text" onChange={onEditItem} onBlur={onBlurItem} value={taskName} ref={this.focused}/>
             </form>
-            : <span className="column__item-text">{n}</span>
+            : <span className="column__item-text">{taskName}</span>
           }
         </div>
         { (isHovered && !isTaskEditable)
@@ -34,7 +34,7 @@ class ColumnItem extends React.Component {
 }
 
 ColumnItem.propTypes = {
-  n: PropTypes.string.isRequired,
+  taskName: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
   isTaskEditable: PropTypes.bool.isRequired,
