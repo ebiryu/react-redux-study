@@ -14,6 +14,10 @@ class Column extends React.Component {
   }
   render() {
     const {columnNumber, columnState, actions} = this.props;
+    const submitTask = (e, columnNumber, inputValue) => {
+      e.preventDefault();
+      actions.onSubmitTask(columnNumber, inputValue);
+    };
     return (
       <div className="column">
         { columnState.isTitleEditable 
@@ -29,7 +33,7 @@ class Column extends React.Component {
             onClick={() => actions.onClickColumnTitle(columnNumber)}
           >{columnState.columnTitle}</span>
         }
-        <form className="column__form" onSubmit={(event) => actions.onSubmitTask(columnNumber,columnState.inputValue,event)}>
+        <form className="column__form" onSubmit={() => submitTask(columnNumber, columnState.inputValue)}>
           <input className="column__input" value={columnState.inputValue} onChange={event => actions.onInputTask(columnNumber, event.target.value)} />
           <button className="column__submit-button" type="submit">+</button>
         </form>

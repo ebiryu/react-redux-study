@@ -37,10 +37,9 @@ export const onEditItem = (columnNumber, taskNumber, editString) => ({
   editString,
 });
 
-export const onSubmitTask = (columnNumber, submittedValue, event) => ({
+export const onSubmitTask = (columnNumber, submittedValue) => ({
   type: actionTypes.addNewTask,
   submittedValue,
-  event,
   columnNumber,
 });
 

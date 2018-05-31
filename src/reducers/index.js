@@ -108,7 +108,6 @@ const columns = (state = initialColumnState, action) => {
         : column
     );
   case actionTypes.addNewTask:
-    action.event.preventDefault();
     return state.map((column,index) => 
       (index === action.columnNumber)
         ? {
