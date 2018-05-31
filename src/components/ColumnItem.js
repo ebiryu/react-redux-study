@@ -18,7 +18,9 @@ class ColumnItem extends React.Component {
       <li className="column__li" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={`column__item ${classIsDone}`} onClick={onClick}>
           { (isTaskEditable)
-            ? <input className="column__item-text" onChange={onEditItem} onBlur={onBlurItem} value={n} ref={this.focused}/>
+            ? <form onSubmit={onBlurItem}>
+              <input className="column__item-text" onChange={onEditItem} onBlur={onBlurItem} value={n} ref={this.focused}/>
+            </form>
             : <span className="column__item-text">{n}</span>
           }
         </div>
