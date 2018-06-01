@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Column from './Column';
 
-class Board extends React.Component {
+class ActiveBoard extends React.Component {
   render() {
     const { columns, actions } = this.props
     return (
@@ -20,9 +20,9 @@ class Board extends React.Component {
   }
 }
 
-Board.propTypes = {
+ActiveBoard.propTypes = {
   columns: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
-export default Board;
+export default ActiveBoard;

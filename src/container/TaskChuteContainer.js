@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import Board from '../components/Board';
+import ActiveBoard from '../components/ActiveBoard';
 import * as actions from '../actions';
 import '../css/main.css';
 
@@ -13,7 +13,7 @@ class TaskChuteContainer extends React.Component {
     const { columns } = boards[0];
     return (
       <div className="body">
-        <Board columns={columns} actions={actions} />
+        <ActiveBoard columns={columns} actions={actions} />
       </div>
     )
   }
