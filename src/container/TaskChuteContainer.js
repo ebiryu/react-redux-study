@@ -10,17 +10,20 @@ import '../css/main.css';
 class TaskChuteContainer extends React.Component {
   render() {
     const { boards, actions } = this.props;
-    const { columns } = boards[0];
+    const { columns } = boards.boardList[boards.whichIsActive];
     return (
       <div className="body">
-        <ActiveBoard columns={columns} actions={actions} />
+        { boards.isActive
+          ? <ActiveBoard columns={columns} actions={actions} />
+          : <br/>
+        }
       </div>
     )
   }
 }
 
 TaskChuteContainer.propTypes = {
-  boards: PropTypes.array.isRequired,
+  boards: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
