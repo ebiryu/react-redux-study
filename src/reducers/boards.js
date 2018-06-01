@@ -5,7 +5,7 @@ const initialBoardState = [
   {
     columns: initialColumnState,
   }
-]
+];
 
 const boards = (state = initialBoardState, action) => {
   return [{columns: columns(state[0].columns, action)}];
