@@ -9,12 +9,12 @@ import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
   render() {
-    const { columns, actions } = this.props;
+    const { boards, actions } = this.props;
+    const { columns } = boards[0];
     return (
       <div className="body">
         <div className="task-chute">
           <div className="column-master">
-            {/* <div className="column column__empty"></div> */}
             { columns.map( (column, index) => {
               return <Column key={index} columnNumber={index} columnState={columns[index]} actions={actions} />
             }) }
@@ -29,12 +29,12 @@ class TaskChuteContainer extends React.Component {
 }
 
 TaskChuteContainer.propTypes = {
-  columns: PropTypes.array.isRequired,
+  boards: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  columns: state.columns,
+  boards: state.boards,
 })
 
 const mapDispatchToProps = (dispatch) => ({

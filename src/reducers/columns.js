@@ -1,6 +1,6 @@
 import * as actionTypes from '../utils/actionTypes';
 
-const initialColumnState = [
+export const initialColumnState = [
   {
     isTitleEditable: false,
     columnTitle: "title",
