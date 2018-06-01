@@ -7,7 +7,6 @@ class ColumnItem extends React.Component {
     this.focused = React.createRef();
   }
   componentDidUpdate() {
-    console.log(this.focused);
     if (this.focused.current) {
       this.focused.current.focus();
     }
@@ -19,11 +18,13 @@ class ColumnItem extends React.Component {
       <li className="column__li" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={`column__item ${classIsDone}`} onClick={onClick}>
           { (isTaskEditable)
-            ? <input className="column__item-text" onChange={onEditItem} onBlur={onBlurItem} value={n} ref={this.focused}/>
+            ? <form onSubmit={onBlurItem}>
+              <input className="column__item-text" onChange={onEditItem} onBlur={onBlurItem} value={n} ref={this.focused}/>
+            </form>
             : <span className="column__item-text">{n}</span>
           }
         </div>
-        { (isHovered)
+        { (isHovered && !isTaskEditable)
           ? <span className="column__item-edit" onClick={onClickEditItem}>✏</span>
           : <span></span>
         }
