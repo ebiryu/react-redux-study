@@ -24,13 +24,16 @@ class ColumnItem extends React.Component {
             : <span className="column__item-text">{taskName}</span>
           }
         </div>
-        { (isHovered && !isTaskEditable)
-          ? <span className="column__item-edit" onClick={onClickEditItem}>✏</span>
-          : <span></span>
-        }
+        <EditButton isHovered={isHovered} isTaskEditable={isTaskEditable} onClickEditItem={onClickEditItem} />
       </li>
     )
   }
+}
+
+const EditButton = ({isHovered, isTaskEditable, onClickEditItem}) => {
+  return (isHovered && !isTaskEditable)
+    ? <span className="column__item-edit" onClick={onClickEditItem}>✏</span>
+    : <span></span>
 }
 
 ColumnItem.propTypes = {
@@ -45,5 +48,11 @@ ColumnItem.propTypes = {
   onBlurItem: PropTypes.func.isRequired,
   onEditItem: PropTypes.func.isRequired,
 };
+
+EditButton.propTypes = {
+  isHovered: PropTypes.bool.isRequired,
+  isTaskEditable: PropTypes.bool.isRequired,
+  onClickEditItem: PropTypes.func.isRequired,
+}
 
 export default ColumnItem;
