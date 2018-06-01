@@ -24,88 +24,6 @@ const initialColumnState = [
 
 const columns = (state = initialColumnState, action) => {
   switch (action.type) {
-  case actionTypes.onClickTask:
-    return state.map((column,index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          tasks: column.tasks.map((task,index) =>
-            (index === action.taskNumber)
-              ? {...task, isDone: !task.isDone}
-              : task
-          ),
-        }
-        : column
-    );
-  case actionTypes.onMouseEnterItem:
-    return state.map((column,index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          tasks: column.tasks.map((task,index) =>
-            (index === action.taskNumber)
-              ? {...task, isHovered: true}
-              : task
-          ),
-        }
-        : column
-    );
-  case actionTypes.onMouseLeaveItem:
-    return state.map((column,index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          tasks: column.tasks.map((task,index) =>
-            (index === action.taskNumber)
-              ? {...task, isHovered: false}
-              : task
-          ),
-        }
-        : column
-    );
-  case actionTypes.onClickEditItem:
-    return state.map((column,index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          tasks: column.tasks.map((task,index) =>
-            (index === action.taskNumber)
-              ? {...task,
-                isTaskEditable: true,
-              }
-              : task
-          ),
-        }
-        : column
-    );
-  case actionTypes.onBlurItem:
-    return state.map((column,index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          tasks: column.tasks.map((task,index) =>
-            (index === action.taskNumber)
-              ? {...task,
-                isTaskEditable: false,
-              }
-              : task
-          ),
-        }
-        : column
-    );
-  case actionTypes.onEditItem:
-    return state.map((column,index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          tasks: column.tasks.map((task,index) =>
-            (index === action.taskNumber)
-              ? {...task, name: action.editString}
-              : task
-          ),
-        }
-        : column
-    );
   case actionTypes.onSubmitTask:
     return state.map((column,index) => 
       (index === action.columnNumber)
@@ -160,6 +78,56 @@ const columns = (state = initialColumnState, action) => {
           isTitleEditable: !column.isTitleEditable,
         }
         : column
+    );
+  default:
+    return state.map((column,index) => 
+      (index === action.columnNumber)
+        ? {
+          ...column,
+          tasks: tasks(column.tasks,action)
+        }
+        : column
+    );
+  }
+}
+
+const tasks = (state = [], action) => {
+  switch (action.type) {
+  case actionTypes.onClickTask:
+    return state.map((task,index) =>
+      (index === action.taskNumber)
+        ? {...task, isDone: !task.isDone}
+        : task
+    );
+  case actionTypes.onMouseEnterItem:
+    return state.map((task,index) =>
+      (index === action.taskNumber)
+        ? {...task, isHovered: true}
+        : task
+    );
+  case actionTypes.onMouseLeaveItem:
+    return state.map((task,index) =>
+      (index === action.taskNumber)
+        ? {...task, isHovered: false}
+        : task
+    );
+  case actionTypes.onClickEditItem:
+    return state.map((task,index) =>
+      (index === action.taskNumber)
+        ? {...task, isTaskEditable: true}
+        : task
+    );
+  case actionTypes.onBlurItem:
+    return state.map((task,index) =>
+      (index === action.taskNumber)
+        ? {...task, isTaskEditable: false}
+        : task
+    );
+  case actionTypes.onEditItem:
+    return state.map((task,index) =>
+      (index === action.taskNumber)
+        ? {...task, name: action.editString}
+        : task
     );
   default:
     return state;
