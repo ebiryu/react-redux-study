@@ -79,7 +79,7 @@ const NewTaskInput = ({columnNumber, inputValue, onInputTask, onSubmitTask}) => 
     onSubmitTask(columnNumber, inputValue);
   };
   return (
-    <form className="column__form" onSubmit={() => submitTask(columnNumber, inputValue)}>
+    <form className="column__form" onSubmit={event => submitTask(event, columnNumber, inputValue)}>
       <input className="column__input" value={inputValue} onChange={event => onInputTask(columnNumber, event.target.value)} />
       <button className="column__submit-button" type="submit">+</button>
     </form>
