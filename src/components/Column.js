@@ -13,14 +13,14 @@ class Column extends React.Component {
           columnTitle={columnState.columnTitle}
           isTitleEditable={columnState.isTitleEditable}
           columnNumber={columnNumber}
-          onClickColumnTitle={actions.onClickColumnTitle}
-          editColumnTitle={actions.editColumnTitle}
+          onClickColumnTitle={actions.enableEditingColumnTitle}
+          editColumnTitle={actions.updateEditingColumnTitle}
         />
         <NewTaskInput
           columnNumber={columnNumber}
           inputValue={columnState.inputValue}
-          onInputTask={actions.onInputTask}
-          onSubmitTask={actions.onSubmitTask}
+          onInputTask={actions.updateInputTask}
+          onSubmitTask={actions.createNewTask}
         />
         <ul className="column__list">
           { columnState.tasks.map( (task, index) => {
@@ -30,12 +30,12 @@ class Column extends React.Component {
                 isDone={task.isDone}
                 isHovered={task.isHovered}
                 isTaskEditable={task.isTaskEditable}
-                onClick={() => actions.onClickTask(columnNumber, index)}
-                onMouseEnter={() => actions.onMouseEnterItem(columnNumber, index)}
-                onMouseLeave={() => actions.onMouseLeaveItem(columnNumber, index)}
-                onClickEditItem={() => actions.onClickEditItem(columnNumber, index)}
-                onBlurItem={() => actions.onBlurItem(columnNumber, index)}
-                onEditItem={event => actions.onEditItem(columnNumber, index, event.target.value)}
+                onClick={() => actions.doSingleTask(columnNumber, index)}
+                onMouseEnter={() => actions.showEditButton(columnNumber, index)}
+                onMouseLeave={() => actions.hideEditButton(columnNumber, index)}
+                onClickEditItem={() => actions.enableEditingTask(columnNumber, index)}
+                onBlurItem={() => actions.disableEditingTask(columnNumber, index)}
+                onEditItem={event => actions.updateEditingTask(columnNumber, index, event.target.value)}
               />
             )
           }) }

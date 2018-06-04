@@ -18,7 +18,7 @@ class TaskChuteContainer extends React.Component {
             { columns.map( (column, index) => {
               return <Column key={index} columnNumber={index} columnState={columns[index]} actions={actions} />
             }) }
-            <div className="column column__empty--next" onClick={actions.addNewColumn}>
+            <div className="column column__empty--next" onClick={actions.createNewColumn}>
               <div className="column__title--next">add column</div>
             </div>
           </div>

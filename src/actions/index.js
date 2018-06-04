@@ -1,65 +1,65 @@
 import * as actionTypes from '../utils/actionTypes';
 
-export const onClickTask = (columnNumber, taskNumber) => ({
-  type: actionTypes.onClickTask,
+export const doSingleTask = (columnNumber, taskNumber) => ({
+  type: actionTypes.doSingleTask,
   taskNumber,
   columnNumber,
 });
 
-export const onMouseEnterItem = (columnNumber, taskNumber) => ({
-  type: actionTypes.onMouseEnterItem,
+export const showEditButton = (columnNumber, taskNumber) => ({
+  type: actionTypes.showEditButton,
   columnNumber,
   taskNumber,
 });
 
-export const onMouseLeaveItem = (columnNumber, taskNumber) => ({
-  type: actionTypes.onMouseLeaveItem,
+export const hideEditButton = (columnNumber, taskNumber) => ({
+  type: actionTypes.hideEditButton,
   columnNumber,
   taskNumber,
 });
 
-export const onClickEditItem = (columnNumber, taskNumber) => ({
-  type: actionTypes.onClickEditItem,
+export const enableEditingTask = (columnNumber, taskNumber) => ({
+  type: actionTypes.enableEditingTask,
   columnNumber,
   taskNumber,
 });
 
-export const onBlurItem = (columnNumber, taskNumber) => ({
-  type: actionTypes.onBlurItem,
+export const disableEditingTask = (columnNumber, taskNumber) => ({
+  type: actionTypes.disableEditingTask,
   columnNumber,
   taskNumber,
 });
 
-export const onEditItem = (columnNumber, taskNumber, editString) => ({
-  type: actionTypes.onEditItem,
+export const updateEditingTask = (columnNumber, taskNumber, editString) => ({
+  type: actionTypes.updateEditingTask,
   columnNumber,
   taskNumber,
   editString,
 });
 
-export const onSubmitTask = (columnNumber, submittedValue) => ({
-  type: actionTypes.onSubmitTask,
+export const createNewTask = (columnNumber, submittedValue) => ({
+  type: actionTypes.createNewTask,
   submittedValue,
   columnNumber,
 });
 
-export const onInputTask = (columnNumber, inputTask) => ({
-  type: actionTypes.onInputTask,
+export const updateInputTask = (columnNumber, inputTask) => ({
+  type: actionTypes.updateInputTask,
   inputTask,
   columnNumber,
 });
 
-export const addNewColumn = () => ({
-  type: actionTypes.addNewColumn,
+export const createNewColumn = () => ({
+  type: actionTypes.createNewColumn,
 });
 
-export const editColumnTitle = (columnNumber, changedColumnTitle) => ({
-  type: actionTypes.editColumnTitle,
+export const updateEditingColumnTitle = (columnNumber, changedColumnTitle) => ({
+  type: actionTypes.updateEditingColumnTitle,
   columnNumber,
   changedColumnTitle,
 });
 
-export const onClickColumnTitle = (columnNumber) => ({
-  type: actionTypes.onClickColumnTitle,
+export const canEditColumnTitle = (columnNumber) => ({
+  type: actionTypes.canEditColumnTitle,
   columnNumber,
 });
