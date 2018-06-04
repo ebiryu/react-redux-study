@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import ColumnItemText from './ColumnItemText';
 import ColumnItemEditButton from './ColumnItemEditButton';
 
 const ColumnItem = ({taskName, isDone, isHovered, isTaskEditable, onClick, onMouseEnter, onMouseLeave, onClickEditItem, onBlurItem, onEditItem}) => {
-  const classIsDone = isDone ? "column__item--done" : "";
+  const taskClass = classNames({
+    'column__item': true,
+    'column__item--done': isDone,
+  })
   return (
     <li className="column__li" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      <div className={`column__item ${classIsDone}`} onClick={onClick}>
+      <div className={taskClass} onClick={onClick}>
         <ColumnItemText isTaskEditable={isTaskEditable} onEditItem={onEditItem} onBlurItem={onBlurItem} taskName={taskName} />
       </div>
       <ColumnItemEditButton isHovered={isHovered} isTaskEditable={isTaskEditable} onClickEditItem={onClickEditItem} />
