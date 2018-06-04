@@ -1,5 +1,3 @@
-export const onClickBoardListItem = 'ON_CLICK_BOARD_LIST_ITEM';
-export const onClickBackButton = 'ON_CLICK_BACK_BUTTON';
 export const doSingleTask = 'DO_SINGLE_TASK';
 export const createNewTask = 'CREATE_NEW_TASK';
 export const updateInputTask = 'UPDATE_INPUT_TASK';
@@ -11,3 +9,5 @@ export const hideEditButton = 'HIDE_EDIT_BUTTON';
 export const enableEditingTask = 'ENABLE_EDITING_TASK';
 export const updateEditingTask = 'UPDATE_EDITING_TASK';
 export const disableEditingTask = 'DISABLE_EDITING_TASK';
+export const openSelectedBoard = 'OPEN_SELECTED_BOARD';
+export const backToBoardList = 'BACK_TO_BOARD_LIST';

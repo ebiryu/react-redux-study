@@ -64,11 +64,11 @@ export const enableEditingColumnTitle = (columnNumber) => ({
   columnNumber,
 });
 
-export const onClickBoardListItem = (boardNumber) => ({
-  type: actionTypes.onClickBoardListItem,
+export const openSelectedBoard = (boardNumber) => ({
+  type: actionTypes.openSelectedBoard,
   boardNumber,
 })
 
-export const onClickBackButton = () => ({
-  type: actionTypes.onClickBackButton,
+export const backToBoardList = () => ({
+  type: actionTypes.backToBoardList,
 })

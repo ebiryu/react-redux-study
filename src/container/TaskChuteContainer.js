@@ -16,7 +16,7 @@ class TaskChuteContainer extends React.Component {
       <div className="vertical-layout">
         <div className="header">
           <div></div>
-          <div className="header__center" onClick={actions.onClickBackButton}>Home</div>
+          <div className="header__center" onClick={actions.backToBoardList}>Home</div>
           <div></div>
         </div>
         <div className="content">

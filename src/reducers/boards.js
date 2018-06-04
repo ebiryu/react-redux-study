@@ -14,13 +14,13 @@ const initialBoardState = {
 
 const boards = (state = initialBoardState, action) => {
   switch (action.type) {
-  case actionTypes.onClickBoardListItem:
+  case actionTypes.openSelectedBoard:
     return {
       ...state,
       isActive: true,
       whichIsActive: action.boardNumber,
     }
-  case actionTypes.onClickBackButton:
+  case actionTypes.backToBoardList:
     return {
       ...state,
       isActive: false,
