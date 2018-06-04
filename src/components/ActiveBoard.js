@@ -7,7 +7,6 @@ class ActiveBoard extends React.Component {
     const { columns, actions } = this.props
     return (
       <div className="task-chute">
-        <div onClick={actions.onClickBackButton}>←</div>
         <div className="column-master">
           { columns.map( (column, index) => {
             return <Column key={index} columnNumber={index} columnState={columns[index]} actions={actions} />

@@ -13,11 +13,20 @@ class TaskChuteContainer extends React.Component {
     const { boards, actions } = this.props;
     const { columns } = boards.boardList[boards.whichIsActive];
     return (
-      <div className="body">
-        { boards.isActive
-          ? <ActiveBoard columns={columns} actions={actions} />
-          : <BoardList boards={boards} actions={actions}/>
-        }
+      <div className="vertical-layout">
+        <div className="header">
+          <div></div>
+          <div className="header__center" onClick={actions.onClickBackButton}>Home</div>
+          <div></div>
+        </div>
+        <div className="content">
+          { boards.isActive
+            ? <ActiveBoard columns={columns} actions={actions} />
+            : <BoardList boards={boards} actions={actions}/>
+          }
+        </div>
+        <div className="footer">
+        </div>
       </div>
     )
   }
