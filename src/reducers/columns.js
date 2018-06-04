@@ -23,34 +23,29 @@ const initialColumnState = [
 ];
 
 const columns = (state = initialColumnState, action) => {
+  let nextColumns = state.concat();
   switch (action.type) {
   case actionTypes.createNewTask:
-    return state.map((column, index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          inputValue: '',
-          tasks: [
-            {
-              name: action.submittedValue,
-              isDone: false,
-              isHovered: false,
-              isTaskEditable: false,
-            },
-            ...column.tasks
-          ]
-        }
-        : column
-    );
+    nextColumns[action.columnNumber] = {
+      ...state[action.columnNumber],
+      inputValue: '',
+      tasks: [
+        {
+          name: action.submittedValue,
+          isDone: false,
+          isHovered: false,
+          isTaskEditable: false,
+        },
+        ...state[action.columnNumber].tasks
+      ]
+    }
+    return nextColumns
   case actionTypes.updateInputTask:
-    return state.map((column, index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          inputValue: action.inputTask,
-        }
-        : column
-    );
+    nextColumns[action.columnNumber] = {
+      ...state[action.columnNumber],
+      inputValue: action.inputTask,
+    }
+    return nextColumns
   case actionTypes.createNewColumn:
     return [
       ...state,
@@ -62,73 +57,68 @@ const columns = (state = initialColumnState, action) => {
       },
     ]
   case actionTypes.updateEditingColumnTitle:
-    return state.map((column, index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          columnTitle: action.changedColumnTitle,
-        }
-        : column
-    );
+    nextColumns[action.columnNumber] = {
+      ...state[action.columnNumber],
+      columnTitle: action.changedColumnTitle,
+    }
+    return nextColumns
   case actionTypes.enableEditingColumnTitle:
-    return state.map((column, index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          isTitleEditable: !column.isTitleEditable,
-        }
-        : column
-    );
+    nextColumns[action.columnNumber] = {
+      ...state[action.columnNumber],
+      isTitleEditable: !state[action.columnNumber].isTitleEditable,
+    }
+    return nextColumns
   default:
-    return state.map((column, index) => 
-      (index === action.columnNumber)
-        ? {
-          ...column,
-          tasks: tasks(column.tasks, action)
-        }
-        : column
-    );
+    if (action.columnNumber !== undefined) {
+      nextColumns[action.columnNumber] = {
+        ...state[action.columnNumber],
+        tasks: tasks(state[action.columnNumber].tasks, action)
+      }
+    }
+    return nextColumns
   }
 }
 
 const tasks = (state = [], action) => {
+  let nextTasks = state.concat()
+  const selectedTask = state[action.taskNumber]
   switch (action.type) {
   case actionTypes.doSingleTask:
-    return state.map((task, index) =>
-      (index === action.taskNumber)
-        ? {...task, isDone: !task.isDone}
-        : task
-    );
+    nextTasks[action.taskNumber] = {
+      ...selectedTask,
+      isDone: !selectedTask.isDone,
+    }
+    return nextTasks
   case actionTypes.showEditButton:
-    return state.map((task, index) =>
-      (index === action.taskNumber)
-        ? {...task, isHovered: true}
-        : task
-    );
+    nextTasks[action.taskNumber] = {
+      ...selectedTask,
+      isHovered: true,
+    }
+    return nextTasks
   case actionTypes.hideEditButton:
-    return state.map((task, index) =>
-      (index === action.taskNumber)
-        ? {...task, isHovered: false}
-        : task
-    );
+    nextTasks[action.taskNumber] = {
+      ...selectedTask,
+      isHovered: false,
+    }
+    return nextTasks
   case actionTypes.enableEditingTask:
-    return state.map((task, index) =>
-      (index === action.taskNumber)
-        ? {...task, isTaskEditable: true}
-        : task
-    );
+    nextTasks[action.taskNumber] = {
+      ...selectedTask,
+      isTaskEditable: true,
+    }
+    return nextTasks
   case actionTypes.disableEditingTask:
-    return state.map((task, index) =>
-      (index === action.taskNumber)
-        ? {...task, isTaskEditable: false}
-        : task
-    );
+    nextTasks[action.taskNumber] = {
+      ...selectedTask,
+      isTaskEditable: false,
+    }
+    return nextTasks
   case actionTypes.updateEditingTask:
-    return state.map((task, index) =>
-      (index === action.taskNumber)
-        ? {...task, name: action.editString}
-        : task
-    );
+    nextTasks[action.taskNumber] = {
+      ...selectedTask,
+      name: action.editString,
+    }
+    return nextTasks
   default:
     return state;
   }
