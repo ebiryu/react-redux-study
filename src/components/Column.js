@@ -28,12 +28,12 @@ class Column extends React.Component {
                 isDone={task.isDone}
                 isHovered={task.isHovered}
                 isTaskEditable={task.isTaskEditable}
-                onClick={() => actions.onClickTask(columnNumber,index)}
-                onMouseEnter={() => actions.onMouseEnterItem(columnNumber,index)}
-                onMouseLeave={() => actions.onMouseLeaveItem(columnNumber,index)}
-                onClickEditItem={() => actions.onClickEditItem(columnNumber,index)}
-                onBlurItem={() => actions.onBlurItem(columnNumber,index)}
-                onEditItem={event => actions.onEditItem(columnNumber,index,event.target.value)}
+                onClick={() => actions.onClickTask(columnNumber, index)}
+                onMouseEnter={() => actions.onMouseEnterItem(columnNumber, index)}
+                onMouseLeave={() => actions.onMouseLeaveItem(columnNumber, index)}
+                onClickEditItem={() => actions.onClickEditItem(columnNumber, index)}
+                onBlurItem={() => actions.onBlurItem(columnNumber, index)}
+                onEditItem={event => actions.onEditItem(columnNumber, index, event.target.value)}
               />
             )
           }) }

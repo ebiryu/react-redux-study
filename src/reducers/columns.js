@@ -25,7 +25,7 @@ const initialColumnState = [
 const columns = (state = initialColumnState, action) => {
   switch (action.type) {
   case actionTypes.onSubmitTask:
-    return state.map((column,index) => 
+    return state.map((column, index) => 
       (index === action.columnNumber)
         ? {
           ...column,
@@ -43,7 +43,7 @@ const columns = (state = initialColumnState, action) => {
         : column
     );
   case actionTypes.onInputTask:
-    return state.map((column,index) => 
+    return state.map((column, index) => 
       (index === action.columnNumber)
         ? {
           ...column,
@@ -62,7 +62,7 @@ const columns = (state = initialColumnState, action) => {
       },
     ]
   case actionTypes.editColumnTitle:
-    return state.map((column,index) => 
+    return state.map((column, index) => 
       (index === action.columnNumber)
         ? {
           ...column,
@@ -71,7 +71,7 @@ const columns = (state = initialColumnState, action) => {
         : column
     );
   case actionTypes.onClickColumnTitle:
-    return state.map((column,index) => 
+    return state.map((column, index) => 
       (index === action.columnNumber)
         ? {
           ...column,
@@ -80,11 +80,11 @@ const columns = (state = initialColumnState, action) => {
         : column
     );
   default:
-    return state.map((column,index) => 
+    return state.map((column, index) => 
       (index === action.columnNumber)
         ? {
           ...column,
-          tasks: tasks(column.tasks,action)
+          tasks: tasks(column.tasks, action)
         }
         : column
     );
@@ -94,37 +94,37 @@ const columns = (state = initialColumnState, action) => {
 const tasks = (state = [], action) => {
   switch (action.type) {
   case actionTypes.onClickTask:
-    return state.map((task,index) =>
+    return state.map((task, index) =>
       (index === action.taskNumber)
         ? {...task, isDone: !task.isDone}
         : task
     );
   case actionTypes.onMouseEnterItem:
-    return state.map((task,index) =>
+    return state.map((task, index) =>
       (index === action.taskNumber)
         ? {...task, isHovered: true}
         : task
     );
   case actionTypes.onMouseLeaveItem:
-    return state.map((task,index) =>
+    return state.map((task, index) =>
       (index === action.taskNumber)
         ? {...task, isHovered: false}
         : task
     );
   case actionTypes.onClickEditItem:
-    return state.map((task,index) =>
+    return state.map((task, index) =>
       (index === action.taskNumber)
         ? {...task, isTaskEditable: true}
         : task
     );
   case actionTypes.onBlurItem:
-    return state.map((task,index) =>
+    return state.map((task, index) =>
       (index === action.taskNumber)
         ? {...task, isTaskEditable: false}
         : task
     );
   case actionTypes.onEditItem:
-    return state.map((task,index) =>
+    return state.map((task, index) =>
       (index === action.taskNumber)
         ? {...task, name: action.editString}
         : task

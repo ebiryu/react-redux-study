@@ -41,4 +41,4 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(TaskChuteContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskChuteContainer);
