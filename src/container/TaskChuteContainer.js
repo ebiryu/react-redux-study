@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import ActiveBoard from '../components/ActiveBoard';
+import BoardList from '../components/BoardList';
 import * as actions from '../actions';
 import '../css/main.css';
 
@@ -15,7 +16,7 @@ class TaskChuteContainer extends React.Component {
       <div className="body">
         { boards.isActive
           ? <ActiveBoard columns={columns} actions={actions} />
-          : <br/>
+          : <BoardList boards={boards} actions={actions}/>
         }
       </div>
     )
