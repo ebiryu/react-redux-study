@@ -8,7 +8,7 @@ class BoardList extends React.Component {
     return(
       <ul>
         { boards.boardList.map( (board, index) => {
-          return <li key={index}>{board.name}</li>
+          return <li key={index} onClick={() => actions.onClickBoardListItem(index)}>{board.name}</li>
         })}
       </ul>
     );

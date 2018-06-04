@@ -9,3 +9,4 @@ export const onMouseLeaveItem = 'ON_HOVER_OUT_ITEM';
 export const onClickEditItem = 'ON_CLICK_EDIT_ITEM';
 export const onEditItem = 'ON_EDIT_ITEM';
 export const onBlurItem = 'ON_BLUR_ITEM';
+export const onClickBoardListItem = 'ON_CLICK_BOARD_LIST_ITEM';

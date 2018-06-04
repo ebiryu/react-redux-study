@@ -63,3 +63,8 @@ export const onClickColumnTitle = (columnNumber) => ({
   type: actionTypes.onClickColumnTitle,
   columnNumber,
 });
+
+export const onClickBoardListItem = (boardNumber) => ({
+  type: actionTypes.onClickBoardListItem,
+  boardNumber,
+})
