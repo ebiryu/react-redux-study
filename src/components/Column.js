@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ColumnItem from '../components/ColumnItem';
+import ColumnTitle from './ColumnTitle';
+import NewTaskInput from './NewTaskInput';
 
 class Column extends React.Component {
   render() {
@@ -11,14 +13,14 @@ class Column extends React.Component {
           columnTitle={columnState.columnTitle}
           isTitleEditable={columnState.isTitleEditable}
           columnNumber={columnNumber}
-          onClickColumnTitle={actions.onClickColumnTitle}
-          editColumnTitle={actions.editColumnTitle}
+          onClickColumnTitle={actions.enableEditingColumnTitle}
+          editColumnTitle={actions.updateEditingColumnTitle}
         />
         <NewTaskInput
           columnNumber={columnNumber}
           inputValue={columnState.inputValue}
-          onInputTask={actions.onInputTask}
-          onSubmitTask={actions.onSubmitTask}
+          onInputTask={actions.updateInputTask}
+          onSubmitTask={actions.createNewTask}
         />
         <ul className="column__list">
           { columnState.tasks.map( (task, index) => {
@@ -28,12 +30,12 @@ class Column extends React.Component {
                 isDone={task.isDone}
                 isHovered={task.isHovered}
                 isTaskEditable={task.isTaskEditable}
-                onClick={() => actions.onClickTask(columnNumber,index)}
-                onMouseEnter={() => actions.onMouseEnterItem(columnNumber,index)}
-                onMouseLeave={() => actions.onMouseLeaveItem(columnNumber,index)}
-                onClickEditItem={() => actions.onClickEditItem(columnNumber,index)}
-                onBlurItem={() => actions.onBlurItem(columnNumber,index)}
-                onEditItem={event => actions.onEditItem(columnNumber,index,event.target.value)}
+                onClick={() => actions.doSingleTask(columnNumber, index)}
+                onMouseEnter={() => actions.showEditButton(columnNumber, index)}
+                onMouseLeave={() => actions.hideEditButton(columnNumber, index)}
+                onClickEditItem={() => actions.enableEditingTask(columnNumber, index)}
+                onBlurItem={() => actions.disableEditingTask(columnNumber, index)}
+                onEditItem={event => actions.updateEditingTask(columnNumber, index, event.target.value)}
               />
             )
           }) }
@@ -43,68 +45,10 @@ class Column extends React.Component {
   }
 }
 
-class ColumnTitle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.focused = React.createRef();
-  }
-  componentDidUpdate() {
-    if (this.focused.current) {
-      this.focused.current.focus();
-    }
-  }
-  render() {
-    const {isTitleEditable, columnNumber, onClickColumnTitle, editColumnTitle, columnTitle} = this.props;
-    return isTitleEditable 
-      ? 
-      <form onSubmit={() => onClickColumnTitle(columnNumber)}>
-        <input className="column__title"
-          onBlur={() => onClickColumnTitle(columnNumber)}
-          onChange={event => editColumnTitle(columnNumber, event.target.value)}
-          value={columnTitle}
-          ref={this.focused}
-        />
-      </form>
-      : 
-      <span className="column__title" onClick={() => onClickColumnTitle(columnNumber)}>
-        {columnTitle}
-      </span>
-      
-  }
-}
-
-const NewTaskInput = ({columnNumber, inputValue, onInputTask, onSubmitTask}) => {
-  const submitTask = (e, columnNumber, inputValue) => {
-    e.preventDefault();
-    onSubmitTask(columnNumber, inputValue);
-  };
-  return (
-    <form className="column__form" onSubmit={event => submitTask(event, columnNumber, inputValue)}>
-      <input className="column__input" value={inputValue} onChange={event => onInputTask(columnNumber, event.target.value)} />
-      <button className="column__submit-button" type="submit">+</button>
-    </form>
-  )
-}
-
 Column.propTypes = {
   columnNumber: PropTypes.number.isRequired,
   columnState: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
-};
-
-ColumnTitle.propTypes = {
-  isTitleEditable: PropTypes.bool.isRequired,
-  columnNumber: PropTypes.number.isRequired,
-  onClickColumnTitle: PropTypes.func.isRequired,
-  editColumnTitle: PropTypes.func.isRequired,
-  columnTitle: PropTypes.string.isRequired,
-};
-
-NewTaskInput.propTypes = {
-  columnNumber: PropTypes.number.isRequired,
-  inputValue: PropTypes.string.isRequired,
-  onInputTask: PropTypes.func.isRequired,
-  onSubmitTask: PropTypes.func.isRequired,
 };
 
 export default Column;
