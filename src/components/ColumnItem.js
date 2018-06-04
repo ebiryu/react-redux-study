@@ -1,40 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import ColumnItemText from './ColumnItemText';
+import ColumnItemEditButton from './ColumnItemEditButton';
 
-class ColumnItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.focused = React.createRef();
-  }
-  componentDidUpdate() {
-    if (this.focused.current) {
-      this.focused.current.focus();
-    }
-  }
-  render() {
-    const {n, isDone, isHovered, isTaskEditable, onClick, onMouseEnter, onMouseLeave, onClickEditItem, onBlurItem, onEditItem} = this.props;
-    const classIsDone = isDone ? "column__item--done" : "";
-    return (
-      <li className="column__li" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        <div className={`column__item ${classIsDone}`} onClick={onClick}>
-          { (isTaskEditable)
-            ? <form onSubmit={onBlurItem}>
-              <input className="column__item-text" onChange={onEditItem} onBlur={onBlurItem} value={n} ref={this.focused}/>
-            </form>
-            : <span className="column__item-text">{n}</span>
-          }
-        </div>
-        { (isHovered && !isTaskEditable)
-          ? <span className="column__item-edit" onClick={onClickEditItem}>✏</span>
-          : <span></span>
-        }
-      </li>
-    )
-  }
+const ColumnItem = ({taskName, isDone, isHovered, isTaskEditable, onClick, onMouseEnter, onMouseLeave, onClickEditItem, onBlurItem, onEditItem}) => {
+  const taskClass = classNames({
+    'column__item': true,
+    'column__item--done': isDone,
+  })
+  return (
+    <li className="column__li" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <div className={taskClass} onClick={onClick}>
+        <ColumnItemText isTaskEditable={isTaskEditable} onEditItem={onEditItem} onBlurItem={onBlurItem} taskName={taskName} />
+      </div>
+      <ColumnItemEditButton isHovered={isHovered} isTaskEditable={isTaskEditable} onClickEditItem={onClickEditItem} />
+    </li>
+  )
 }
 
 ColumnItem.propTypes = {
-  n: PropTypes.string.isRequired,
+  taskName: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
   isHovered: PropTypes.bool.isRequired,
   isTaskEditable: PropTypes.bool.isRequired,

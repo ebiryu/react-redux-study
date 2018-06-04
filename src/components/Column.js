@@ -1,52 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ColumnItem from '../components/ColumnItem';
+import ColumnTitle from './ColumnTitle';
+import NewTaskInput from './NewTaskInput';
 
 class Column extends React.Component {
-  constructor(props) {
-    super(props);
-    this.focused = React.createRef();
-  }
-  componentDidUpdate() {
-    if (this.focused.current) {
-      this.focused.current.focus();
-    }
-  }
   render() {
     const {columnNumber, columnState, actions} = this.props;
     return (
       <div className="column">
-        { columnState.isTitleEditable 
-          ? <form onSubmit={() => actions.onClickColumnTitle(columnNumber)}>
-            <input className="column__title"
-              onBlur={() => actions.onClickColumnTitle(columnNumber)}
-              onChange={event => actions.onChangeColumnTitle(columnNumber,event)}
-              value={columnState.columnTitle}
-              ref={this.focused}
-            />
-          </form>
-          : <span className="column__title"
-            onClick={() => actions.onClickColumnTitle(columnNumber)}
-          >{columnState.columnTitle}</span>
-        }
-        <form className="column__form" onSubmit={(event) => actions.onSubmitTask(columnNumber,columnState.inputValue,event)}>
-          <input className="column__input" value={columnState.inputValue} onChange={event => actions.onInputTask(columnNumber,event)} />
-          <button className="column__submit-button" type="submit">+</button>
-        </form>
+        <ColumnTitle
+          columnTitle={columnState.columnTitle}
+          isTitleEditable={columnState.isTitleEditable}
+          columnNumber={columnNumber}
+          onClickColumnTitle={actions.enableEditingColumnTitle}
+          editColumnTitle={actions.updateEditingColumnTitle}
+        />
+        <NewTaskInput
+          columnNumber={columnNumber}
+          inputValue={columnState.inputValue}
+          onInputTask={actions.updateInputTask}
+          onSubmitTask={actions.createNewTask}
+        />
         <ul className="column__list">
           { columnState.tasks.map( (task, index) => {
             return (
               <ColumnItem key={index}
-                n={task.name}
+                taskName={task.name}
                 isDone={task.isDone}
                 isHovered={task.isHovered}
                 isTaskEditable={task.isTaskEditable}
-                onClick={() => actions.onItemClick(columnNumber,index)}
-                onMouseEnter={() => actions.onMouseEnterItem(columnNumber,index)}
-                onMouseLeave={() => actions.onMouseLeaveItem(columnNumber,index)}
-                onClickEditItem={() => actions.onClickEditItem(columnNumber,index)}
-                onBlurItem={() => actions.onBlurItem(columnNumber,index)}
-                onEditItem={(event) => actions.onEditItem(columnNumber,index,event)}
+                onClick={() => actions.doSingleTask(columnNumber, index)}
+                onMouseEnter={() => actions.showEditButton(columnNumber, index)}
+                onMouseLeave={() => actions.hideEditButton(columnNumber, index)}
+                onClickEditItem={() => actions.enableEditingTask(columnNumber, index)}
+                onBlurItem={() => actions.disableEditingTask(columnNumber, index)}
+                onEditItem={event => actions.updateEditingTask(columnNumber, index, event.target.value)}
               />
             )
           }) }
