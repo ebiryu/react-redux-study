@@ -68,3 +68,7 @@ export const onClickBoardListItem = (boardNumber) => ({
   type: actionTypes.onClickBoardListItem,
   boardNumber,
 })
+
+export const onClickBackButton = () => ({
+  type: actionTypes.onClickBackButton,
+})

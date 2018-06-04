@@ -20,6 +20,11 @@ const boards = (state = initialBoardState, action) => {
       isActive: true,
       whichIsActive: action.boardNumber,
     }
+  case actionTypes.onClickBackButton:
+    return {
+      ...state,
+      isActive: false,
+    }
   default:
     return {
       ...state,

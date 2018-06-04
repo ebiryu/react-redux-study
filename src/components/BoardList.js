@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class BoardList extends React.Component {
   render() {
     const { boards, actions } = this.props;
-    console.log(boards.boardList);
     return(
       <ul>
         { boards.boardList.map( (board, index) => {

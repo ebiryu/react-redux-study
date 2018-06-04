@@ -10,3 +10,4 @@ export const onClickEditItem = 'ON_CLICK_EDIT_ITEM';
 export const onEditItem = 'ON_EDIT_ITEM';
 export const onBlurItem = 'ON_BLUR_ITEM';
 export const onClickBoardListItem = 'ON_CLICK_BOARD_LIST_ITEM';
+export const onClickBackButton = 'ON_CLICK_BACK_BUTTON';
