@@ -59,7 +59,7 @@ export const updateEditingColumnTitle = (columnNumber, changedColumnTitle) => ({
   changedColumnTitle,
 });
 
-export const canEditColumnTitle = (columnNumber) => ({
-  type: actionTypes.canEditColumnTitle,
+export const enableEditingColumnTitle = (columnNumber) => ({
+  type: actionTypes.enableEditingColumnTitle,
   columnNumber,
 });
