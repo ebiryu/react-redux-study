@@ -34,12 +34,14 @@ class TaskChuteContainer extends React.Component {
 
 TaskChuteContainer.propTypes = {
   boards: PropTypes.object.isRequired,
+  columns: PropTypes.object.isRequired,
   tasks: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   boards: state.boards,
+  columns: state.columns,
   tasks: state.tasks,
 })
 

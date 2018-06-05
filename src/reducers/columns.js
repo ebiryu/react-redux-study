@@ -1,30 +1,28 @@
 import * as actionTypes from '../utils/actionTypes';
 
-export const initialColumnState = [
-  {
-    isTitleEditable: false,
-    columnTitle: "title",
-    inputValue: "",
-    tasks: [
-      {
-        name: "ひとつめ",
-        isDone: false,
-        isHovered: false,
-        isTaskEditable: false,
-      },
-      {
-        name: "ふたつめ",
-        isDone: true,
-        isHovered: false,
-        isTaskEditable: false,
-      }
-    ]
+export const initialColumnState = {
+  byId: {
+    "column1": {
+      id: "column1",
+      name: "title1",
+      isTitleEditable: false,
+      inputValue: "",
+      tasks: ["task1", "task2"],
+    },
+    "column2": {
+      id: "column2",
+      name: "title2",
+      isTitleEditable: false,
+      inputValue: "",
+      tasks: ["task3", "task4"],
+    },
   },
-];
+  allIds: ["column1", "column2"],
+}
 
 const columns = (state = initialColumnState, action) => {
-  let nextColumns = state.concat();
-  const selectedColumn = state[action.columnNumber]
+  let nextColumns = Object.assign({}, state.byId)
+  const selectedColumn = state.byId[action.columnNumber]
   switch (action.type) {
   case actionTypes.createNewTask:
     nextColumns[action.columnNumber] = {
@@ -74,4 +72,4 @@ const columns = (state = initialColumnState, action) => {
   }
 }
 
-export default columns;
+export default columns
