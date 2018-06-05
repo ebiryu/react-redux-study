@@ -7,12 +7,18 @@ const initialBoardState = {
       name: "first board",
       columns: initialColumnState,
     },
+    {
+      name: "second board",
+      columns: initialColumnState,
+    },
   ],
   isActive: false,
   whichIsActive: 0,
 };
 
 const boards = (state = initialBoardState, action) => {
+  let nextBoardList = state.boardList.concat()
+  const selectedBoard = state.boardList[action.boardNumber]
   switch (action.type) {
   case actionTypes.openSelectedBoard:
     return {
@@ -26,15 +32,17 @@ const boards = (state = initialBoardState, action) => {
       isActive: false,
     }
   default:
-    return {
-      ...state,
-      boardList: [
-        {
-          name: "first board",
-          columns: columns(state.boardList[0].columns, action)
-        },
-      ],
-    };
+    if (action.boardNumber !== undefined) {
+      nextBoardList[action.boardNumber] = {
+        ...selectedBoard,
+        columns: columns(state.boardList[action.boardNumber].columns, action),
+      }
+      return {
+        ...state,
+        boardList: nextBoardList,
+      }
+    }
+    return state
   }
 };
 

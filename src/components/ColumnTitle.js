@@ -12,19 +12,19 @@ class ColumnTitle extends React.Component {
     }
   }
   render() {
-    const {isTitleEditable, columnNumber, onClickColumnTitle, editColumnTitle, columnTitle} = this.props;
+    const {isTitleEditable, onClickColumnTitle, editColumnTitle, columnTitle} = this.props;
     return isTitleEditable 
       ? 
-      <form onSubmit={() => onClickColumnTitle(columnNumber)}>
+      <form onSubmit={onClickColumnTitle}>
         <input className="column__title"
-          onBlur={() => onClickColumnTitle(columnNumber)}
-          onChange={event => editColumnTitle(columnNumber, event.target.value)}
+          onBlur={onClickColumnTitle}
+          onChange={event => editColumnTitle(event.target.value)}
           value={columnTitle}
           ref={this.focused}
         />
       </form>
       : 
-      <span className="column__title" onClick={() => onClickColumnTitle(columnNumber)}>
+      <span className="column__title" onClick={onClickColumnTitle}>
         {columnTitle}
       </span>
       
@@ -33,7 +33,6 @@ class ColumnTitle extends React.Component {
 
 ColumnTitle.propTypes = {
   isTitleEditable: PropTypes.bool.isRequired,
-  columnNumber: PropTypes.number.isRequired,
   onClickColumnTitle: PropTypes.func.isRequired,
   editColumnTitle: PropTypes.func.isRequired,
   columnTitle: PropTypes.string.isRequired,
