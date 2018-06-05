@@ -14,9 +14,9 @@ const initialBoardState = {
     },
   },
   allIds: ["board1", "board2"],
-  currentBoard: "board1",
+  currentId: "board1",
   isBoardActive: false,
-};
+}
 
 const boards = (state = initialBoardState, action) => {
   let nextBoardList = Object.assign({}, state.byId)
@@ -25,17 +25,17 @@ const boards = (state = initialBoardState, action) => {
   case actionTypes.openSelectedBoard:
     return {
       ...state,
-      isActive: true,
-      whichIsActive: action.boardNumber,
+      isBoardActive: true,
+      currentId: action.boardNumber,
     }
   case actionTypes.backToBoardList:
     return {
       ...state,
-      isActive: false,
+      isBoardActive: false,
     }
   default:
     return state
   }
-};
+}
 
 export default boards;

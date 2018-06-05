@@ -22,7 +22,7 @@ export const initialColumnState = {
 
 const columns = (state = initialColumnState, action) => {
   let nextColumns = Object.assign({}, state.byId)
-  const selectedColumn = state.byId[action.columnNumber]
+  const selectedColumn = {}
   switch (action.type) {
   case actionTypes.createNewTask:
     nextColumns[action.columnNumber] = {
@@ -68,7 +68,7 @@ const columns = (state = initialColumnState, action) => {
     }
     return nextColumns
   default:
-    return nextColumns
+    return state
   }
 }
 

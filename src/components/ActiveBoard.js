@@ -4,14 +4,14 @@ import Column from './Column';
 
 class ActiveBoard extends React.Component {
   render() {
-    const { boardNumber, columns, actions } = this.props
+    const { boards, columns, actions } = this.props
     return (
       <div className="task-chute">
         <div className="column-master">
-          { columns.map( (column, index) => {
-            return <Column key={index} boardNumber={boardNumber} columnNumber={index} columnState={columns[index]} actions={actions} />
+          { boards.byId[boards.currentId].columns.map( (columnId, index) => {
+            return <Column key={index} boardNumber={boards.currentBoard} columnNumber={columnId} columnState={columns.byId[columnId]} actions={actions} />
           }) }
-          <div className="column column__empty--next" onClick={() => actions.createNewColumn(boardNumber)}>
+          <div className="column column__empty--next" onClick={() => actions.createNewColumn(boards.currentBoard)}>
             <div className="column__title--next">add column</div>
           </div>
         </div>
@@ -21,8 +21,8 @@ class ActiveBoard extends React.Component {
 }
 
 ActiveBoard.propTypes = {
-  boardNumber: PropTypes.number.isRequired,
-  columns: PropTypes.array.isRequired,
+  boards: PropTypes.object.isRequired,
+  columns: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
