@@ -10,8 +10,7 @@ import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
   render() {
-    const { boards, tasks, actions } = this.props;
-    const { columns } = boards.boardList[boards.whichIsActive];
+    const { boards, columns, tasks, actions } = this.props;
     return (
       <div className="vertical-layout">
         <div className="header">
