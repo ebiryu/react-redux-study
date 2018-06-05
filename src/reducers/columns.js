@@ -26,19 +26,8 @@ const columns = (state = initialColumnState, action) => {
   const selectedColumn = state.byId[action.columnId]
   switch (action.type) {
   case actionTypes.createNewTask:
-    nextColumns[action.columnId] = {
-      ...selectedColumn,
-      inputValue: '',
-      tasks: [
-        {
-          name: action.submittedValue,
-          isDone: false,
-          isHovered: false,
-          isTaskEditable: false,
-        },
-        ...selectedColumn.tasks
-      ]
-    }
+    nextColumns[action.columnId].tasks.unshift(action.newTaskId)
+    nextColumns[action.columnId].inputValue = ''
     return { ...state, byId: nextColumns, }
   case actionTypes.updateInputTask:
     nextColumns[action.columnId] = {

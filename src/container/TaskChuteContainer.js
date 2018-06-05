@@ -20,7 +20,7 @@ class TaskChuteContainer extends React.Component {
         </div>
         <div className="content">
           { boards.isActive
-            ? <ActiveBoard boards={boards} columns={columns} actions={actions} />
+            ? <ActiveBoard boards={boards} columns={columns} tasks={tasks} actions={actions} />
             : <BoardList boards={boards} actions={actions}/>
           }
         </div>

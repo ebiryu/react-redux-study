@@ -43,11 +43,17 @@ export const updateEditingTask = (boardId, columnId, taskId, editString) => ({
   editString,
 });
 
-export const createNewTask = (boardId, columnId, submittedValue) => ({
+export const createNewTask = (columnId, newTaskId, newTaskName) => ({
   type: actionTypes.createNewTask,
-  boardId,
-  submittedValue,
   columnId,
+  newTaskId,
+  newTaskName,
+});
+
+export const registerNewTaskToColumn = (columnId, newTaskId) => ({
+  type: actionTypes.registerNewTaskToColumn,
+  columnId,
+  newTaskId,
 });
 
 export const updateInputTask = (boardId, columnId, inputTask) => ({

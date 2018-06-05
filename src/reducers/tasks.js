@@ -36,6 +36,7 @@ const initialTaskState = {
 
 const tasks = (state = initialTaskState, action) => {
   let nextTasks = Object.assign({}, state.byId)
+  let nextAllIds = state.allIds.concat()
   const selectedTask = state.byId[action.taskId]
   switch (action.type) {
   case actionTypes.doSingleTask:
@@ -43,37 +44,46 @@ const tasks = (state = initialTaskState, action) => {
       ...selectedTask,
       isDone: !selectedTask.isDone,
     }
-    return nextTasks
+    return { ...state, byId: nextTasks }
   case actionTypes.showEditButton:
     nextTasks[action.taskId] = {
       ...selectedTask,
       isHovered: true,
     }
-    return nextTasks
+    return { ...state, byId: nextTasks }
   case actionTypes.hideEditButton:
     nextTasks[action.taskId] = {
       ...selectedTask,
       isHovered: false,
     }
-    return nextTasks
+    return { ...state, byId: nextTasks }
   case actionTypes.enableEditingTask:
     nextTasks[action.taskId] = {
       ...selectedTask,
       isTaskEditable: true,
     }
-    return nextTasks
+    return { ...state, byId: nextTasks }
   case actionTypes.disableEditingTask:
     nextTasks[action.taskId] = {
       ...selectedTask,
       isTaskEditable: false,
     }
-    return nextTasks
+    return { ...state, byId: nextTasks }
   case actionTypes.updateEditingTask:
     nextTasks[action.taskId] = {
       ...selectedTask,
       name: action.editString,
     }
-    return nextTasks
+    return { ...state, byId: nextTasks }
+  case actionTypes.createNewTask:
+    nextTasks[action.newTaskId] = {
+      name: action.newTaskName,
+      isDone: false,
+      isHovered: false,
+      isTaskEditable: false,
+    }
+    nextAllIds.push(action.newTaskId)
+    return { ...state, byId: nextTasks, allIds: nextAllIds, }
   default:
     return state;
   }

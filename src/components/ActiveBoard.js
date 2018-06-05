@@ -8,13 +8,19 @@ class ActiveBoard extends React.Component {
     actions.registerNewColumnToBoard(currentBoardId, newColumnId)
   }
   render() {
-    const { boards, columns, actions } = this.props
+    const { boards, columns, tasks, actions } = this.props
     return (
       <div className="task-chute">
         <div className="column-master">
-          { boards.byId[boards.currentId].columns.map( (columnId, index) => {
-            return <Column key={index} boardId={boards.currentBoard} columnId={columnId} columnState={columns.byId[columnId]} actions={actions} />
-          }) }
+          { boards.byId[boards.currentId].columns.map( (columnId, index) => (
+            <Column key={index}
+              boardId={boards.currentId}
+              columnId={columnId}
+              columnState={columns.byId[columnId]}
+              tasks={tasks}
+              actions={actions}
+            />
+          )) }
           <div
             className="column column__empty--next"
             onClick={() => this.addNewColumnToBoard(actions, boards.currentId, `column${columns.allIds.length}`)}
@@ -30,6 +36,7 @@ class ActiveBoard extends React.Component {
 ActiveBoard.propTypes = {
   boards: PropTypes.object.isRequired,
   columns: PropTypes.object.isRequired,
+  tasks: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
