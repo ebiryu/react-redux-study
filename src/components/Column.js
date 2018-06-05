@@ -6,11 +6,13 @@ import NewTaskInput from './NewTaskInput';
 
 class Column extends React.Component {
   render() {
-    const {boardNumber, columnNumber, columnState, actions} = this.props;
+    const {boardId, columnId, columnState, actions} = this.props;
+    const boardNumber = boardId
+    const columnNumber = columnId
     return (
       <div className="column">
         <ColumnTitle
-          columnTitle={columnState.columnTitle}
+          columnTitle={columnState.name}
           isTitleEditable={columnState.isTitleEditable}
           onClickColumnTitle={() => actions.enableEditingColumnTitle(boardNumber, columnNumber)}
           editColumnTitle={(inputString) => actions.updateEditingColumnTitle(boardNumber, columnNumber, inputString)}
@@ -44,8 +46,8 @@ class Column extends React.Component {
 }
 
 Column.propTypes = {
-  boardNumber: PropTypes.number.isRequired,
-  columnNumber: PropTypes.number.isRequired,
+  boardId: PropTypes.string.isRequired,
+  columnId: PropTypes.string.isRequired,
   columnState: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 };

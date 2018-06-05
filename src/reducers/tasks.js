@@ -39,37 +39,37 @@ const tasks = (state = initialTaskState, action) => {
   const selectedTask = state.byId[action.taskId]
   switch (action.type) {
   case actionTypes.doSingleTask:
-    nextTasks[action.taskNumber] = {
+    nextTasks[action.taskId] = {
       ...selectedTask,
       isDone: !selectedTask.isDone,
     }
     return nextTasks
   case actionTypes.showEditButton:
-    nextTasks[action.taskNumber] = {
+    nextTasks[action.taskId] = {
       ...selectedTask,
       isHovered: true,
     }
     return nextTasks
   case actionTypes.hideEditButton:
-    nextTasks[action.taskNumber] = {
+    nextTasks[action.taskId] = {
       ...selectedTask,
       isHovered: false,
     }
     return nextTasks
   case actionTypes.enableEditingTask:
-    nextTasks[action.taskNumber] = {
+    nextTasks[action.taskId] = {
       ...selectedTask,
       isTaskEditable: true,
     }
     return nextTasks
   case actionTypes.disableEditingTask:
-    nextTasks[action.taskNumber] = {
+    nextTasks[action.taskId] = {
       ...selectedTask,
       isTaskEditable: false,
     }
     return nextTasks
   case actionTypes.updateEditingTask:
-    nextTasks[action.taskNumber] = {
+    nextTasks[action.taskId] = {
       ...selectedTask,
       name: action.editString,
     }

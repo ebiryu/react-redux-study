@@ -15,24 +15,26 @@ const initialBoardState = {
   },
   allIds: ["board1", "board2"],
   currentId: "board1",
-  isBoardActive: false,
+  isActive: false,
 }
 
 const boards = (state = initialBoardState, action) => {
-  let nextBoardList = Object.assign({}, state.byId)
-  const selectedBoard = state.byId[action.boardNumber]
+  let nextBoards = Object.assign({}, state.byId)
   switch (action.type) {
   case actionTypes.openSelectedBoard:
     return {
       ...state,
-      isBoardActive: true,
-      currentId: action.boardNumber,
+      isActive: true,
+      currentId: action.boardId,
     }
   case actionTypes.backToBoardList:
     return {
       ...state,
-      isBoardActive: false,
+      isActive: false,
     }
+  case actionTypes.registerNewColumnToBoard:
+    nextBoards[action.boardId].columns.push(action.newColumnId)
+    return { ...state, byId: nextBoards, }
   default:
     return state
   }

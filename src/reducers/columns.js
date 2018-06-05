@@ -22,10 +22,11 @@ export const initialColumnState = {
 
 const columns = (state = initialColumnState, action) => {
   let nextColumns = Object.assign({}, state.byId)
-  const selectedColumn = {}
+  let nextAllIds = state.allIds.concat()
+  const selectedColumn = state.byId[action.columnId]
   switch (action.type) {
   case actionTypes.createNewTask:
-    nextColumns[action.columnNumber] = {
+    nextColumns[action.columnId] = {
       ...selectedColumn,
       inputValue: '',
       tasks: [
@@ -38,35 +39,34 @@ const columns = (state = initialColumnState, action) => {
         ...selectedColumn.tasks
       ]
     }
-    return nextColumns
+    return { ...state, byId: nextColumns, }
   case actionTypes.updateInputTask:
-    nextColumns[action.columnNumber] = {
-      ...state[action.columnNumber],
+    nextColumns[action.columnId] = {
+      ...selectedColumn,
       inputValue: action.inputTask,
     }
-    return nextColumns
+    return { ...state, byId: nextColumns, }
   case actionTypes.createNewColumn:
-    return [
-      ...state,
-      {
-        isTitleEditable: false,
-        columnTitle: "title",
-        inputValue: "",
-        tasks: [],
-      },
-    ]
+    nextColumns[action.newColumnId] = {
+      isTitleEditable: false,
+      columnTitle: "title",
+      inputValue: "",
+      tasks: [],
+    }
+    nextAllIds.push(action.newColumnId)
+    return { ...state, byId: nextColumns, allIds: nextAllIds, }
   case actionTypes.updateEditingColumnTitle:
-    nextColumns[action.columnNumber] = {
-      ...state[action.columnNumber],
-      columnTitle: action.changedColumnTitle,
+    nextColumns[action.columnId] = {
+      ...state.byId[action.columnId],
+      name: action.changedColumnTitle,
     }
-    return nextColumns
+    return { ...state, byId: nextColumns, }
   case actionTypes.enableEditingColumnTitle:
-    nextColumns[action.columnNumber] = {
-      ...state[action.columnNumber],
-      isTitleEditable: !state[action.columnNumber].isTitleEditable,
+    nextColumns[action.columnId] = {
+      ...state.byId[action.columnId],
+      isTitleEditable: !state.byId[action.columnId].isTitleEditable,
     }
-    return nextColumns
+    return { ...state, byId: nextColumns, }
   default:
     return state
   }

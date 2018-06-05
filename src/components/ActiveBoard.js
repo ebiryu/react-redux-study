@@ -3,15 +3,22 @@ import PropTypes from 'prop-types';
 import Column from './Column';
 
 class ActiveBoard extends React.Component {
+  addNewColumnToBoard(actions, currentBoardId, newColumnId) {
+    actions.createNewColumn(newColumnId)
+    actions.registerNewColumnToBoard(currentBoardId, newColumnId)
+  }
   render() {
     const { boards, columns, actions } = this.props
     return (
       <div className="task-chute">
         <div className="column-master">
           { boards.byId[boards.currentId].columns.map( (columnId, index) => {
-            return <Column key={index} boardNumber={boards.currentBoard} columnNumber={columnId} columnState={columns.byId[columnId]} actions={actions} />
+            return <Column key={index} boardId={boards.currentBoard} columnId={columnId} columnState={columns.byId[columnId]} actions={actions} />
           }) }
-          <div className="column column__empty--next" onClick={() => actions.createNewColumn(boards.currentBoard)}>
+          <div
+            className="column column__empty--next"
+            onClick={() => this.addNewColumnToBoard(actions, boards.currentId, `column${columns.allIds.length}`)}
+          >
             <div className="column__title--next">add column</div>
           </div>
         </div>

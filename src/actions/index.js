@@ -1,83 +1,89 @@
 import * as actionTypes from '../utils/actionTypes';
 
-export const doSingleTask = (boardNumber, columnNumber, taskNumber) => ({
+export const doSingleTask = (boardId, columnId, taskId) => ({
   type: actionTypes.doSingleTask,
-  boardNumber,
-  columnNumber,
-  taskId: taskNumber,
+  boardId,
+  columnId,
+  taskId,
 });
 
-export const showEditButton = (boardNumber, columnNumber, taskNumber) => ({
+export const showEditButton = (boardId, columnId, taskId) => ({
   type: actionTypes.showEditButton,
-  boardNumber,
-  columnNumber,
-  taskId: taskNumber,
+  boardId,
+  columnId,
+  taskId,
 });
 
-export const hideEditButton = (boardNumber, columnNumber, taskNumber) => ({
+export const hideEditButton = (boardId, columnId, taskId) => ({
   type: actionTypes.hideEditButton,
-  boardNumber,
-  columnNumber,
-  taskId: taskNumber,
+  boardId,
+  columnId,
+  taskId,
 });
 
-export const enableEditingTask = (boardNumber, columnNumber, taskNumber) => ({
+export const enableEditingTask = (boardId, columnId, taskId) => ({
   type: actionTypes.enableEditingTask,
-  boardNumber,
-  columnNumber,
-  taskId: taskNumber,
+  boardId,
+  columnId,
+  taskId,
 });
 
-export const disableEditingTask = (boardNumber, columnNumber, taskNumber) => ({
+export const disableEditingTask = (boardId, columnId, taskId) => ({
   type: actionTypes.disableEditingTask,
-  boardNumber,
-  columnNumber,
-  taskId: taskNumber,
+  boardId,
+  columnId,
+  taskId,
 });
 
-export const updateEditingTask = (boardNumber, columnNumber, taskNumber, editString) => ({
+export const updateEditingTask = (boardId, columnId, taskId, editString) => ({
   type: actionTypes.updateEditingTask,
-  boardNumber,
-  columnNumber,
-  taskId: taskNumber,
+  boardId,
+  columnId,
+  taskId,
   editString,
 });
 
-export const createNewTask = (boardNumber, columnNumber, submittedValue) => ({
+export const createNewTask = (boardId, columnId, submittedValue) => ({
   type: actionTypes.createNewTask,
-  boardNumber,
+  boardId,
   submittedValue,
-  columnNumber,
+  columnId,
 });
 
-export const updateInputTask = (boardNumber, columnNumber, inputTask) => ({
+export const updateInputTask = (boardId, columnId, inputTask) => ({
   type: actionTypes.updateInputTask,
-  boardNumber,
+  boardId,
   inputTask,
-  columnNumber,
+  columnId,
 });
 
-export const createNewColumn = (boardNumber) => ({
+export const createNewColumn = (newColumnId) => ({
   type: actionTypes.createNewColumn,
-  boardNumber,
+  newColumnId,
 });
 
-export const updateEditingColumnTitle = (boardNumber, columnNumber, changedColumnTitle) => ({
+export const registerNewColumnToBoard = (boardId, newColumnId) => ({
+  type: actionTypes.registerNewColumnToBoard,
+  boardId,
+  newColumnId,
+});
+
+export const updateEditingColumnTitle = (boardId, columnId, changedColumnTitle) => ({
   type: actionTypes.updateEditingColumnTitle,
-  boardNumber,
-  columnNumber,
+  boardId,
+  columnId,
   changedColumnTitle,
 });
 
-export const enableEditingColumnTitle = (boardNumber, columnNumber) => ({
+export const enableEditingColumnTitle = (boardId, columnId) => ({
   type: actionTypes.enableEditingColumnTitle,
-  boardNumber,
-  columnNumber,
+  boardId,
+  columnId,
 });
 
-export const openSelectedBoard = (boardNumber) => ({
+export const openSelectedBoard = (boardId) => ({
   type: actionTypes.openSelectedBoard,
-  boardNumber,
+  boardId,
 })
 
 export const backToBoardList = () => ({
