@@ -48,8 +48,8 @@ const columns = (state = initialColumnState, action) => {
     return { ...state, byId: nextColumns, }
   case actionTypes.createNewColumn:
     nextColumns[action.newColumnId] = {
+      name: "title",
       isTitleEditable: false,
-      columnTitle: "title",
       inputValue: "",
       tasks: [],
     }
