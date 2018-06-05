@@ -3,25 +3,29 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import Column from '../components/Column';
+import ActiveBoard from '../components/ActiveBoard';
+import BoardList from '../components/BoardList';
 import * as actions from '../actions';
 import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
   render() {
-    const { columns, actions } = this.props;
+    const { boards, actions } = this.props;
+    const { columns } = boards.boardList[boards.whichIsActive];
     return (
-      <div className="body">
-        <div className="task-chute">
-          <div className="column-master">
-            {/* <div className="column column__empty"></div> */}
-            { columns.map( (column, index) => {
-              return <Column key={index} columnNumber={index} columnState={columns[index]} actions={actions} />
-            }) }
-            <div className="column column__empty--next" onClick={actions.createNewColumn}>
-              <div className="column__title--next">add column</div>
-            </div>
-          </div>
+      <div className="vertical-layout">
+        <div className="header">
+          <div></div>
+          <div className="header__center" onClick={actions.backToBoardList}>Home</div>
+          <div></div>
+        </div>
+        <div className="content">
+          { boards.isActive
+            ? <ActiveBoard boardNumber={boards.whichIsActive} columns={columns} actions={actions} />
+            : <BoardList boards={boards} actions={actions}/>
+          }
+        </div>
+        <div className="footer">
         </div>
       </div>
     )
@@ -29,12 +33,12 @@ class TaskChuteContainer extends React.Component {
 }
 
 TaskChuteContainer.propTypes = {
-  columns: PropTypes.array.isRequired,
+  boards: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  columns: state.columns,
+  boards: state.boards,
 })
 
 const mapDispatchToProps = (dispatch) => ({

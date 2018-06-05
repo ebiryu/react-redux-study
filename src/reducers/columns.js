@@ -1,6 +1,6 @@
 import * as actionTypes from '../utils/actionTypes';
 
-const initialColumnState = [
+export const initialColumnState = [
   {
     isTitleEditable: false,
     columnTitle: "title",
@@ -24,10 +24,11 @@ const initialColumnState = [
 
 const columns = (state = initialColumnState, action) => {
   let nextColumns = state.concat();
+  const selectedColumn = state[action.columnNumber]
   switch (action.type) {
   case actionTypes.createNewTask:
     nextColumns[action.columnNumber] = {
-      ...state[action.columnNumber],
+      ...selectedColumn,
       inputValue: '',
       tasks: [
         {
@@ -36,7 +37,7 @@ const columns = (state = initialColumnState, action) => {
           isHovered: false,
           isTaskEditable: false,
         },
-        ...state[action.columnNumber].tasks
+        ...selectedColumn.tasks
       ]
     }
     return nextColumns

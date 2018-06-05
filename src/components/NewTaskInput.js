@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NewTaskInput = ({columnNumber, inputValue, onInputTask, onSubmitTask}) => {
-  const submitTask = (e, columnNumber, inputValue) => {
+const NewTaskInput = ({inputValue, onInputTask, onSubmitTask}) => {
+  const submitTask = (e, inputValue) => {
     e.preventDefault();
-    onSubmitTask(columnNumber, inputValue);
+    onSubmitTask(inputValue);
   };
   return (
-    <form className="column__form" onSubmit={event => submitTask(event, columnNumber, inputValue)}>
-      <input className="column__input" value={inputValue} onChange={event => onInputTask(columnNumber, event.target.value)} />
+    <form className="column__form" onSubmit={event => submitTask(event, inputValue)}>
+      <input className="column__input" value={inputValue} onChange={event => onInputTask(event.target.value)} />
       <button className="column__submit-button" type="submit">+</button>
     </form>
   )
 }
 
 NewTaskInput.propTypes = {
-  columnNumber: PropTypes.number.isRequired,
   inputValue: PropTypes.string.isRequired,
   onInputTask: PropTypes.func.isRequired,
   onSubmitTask: PropTypes.func.isRequired,
