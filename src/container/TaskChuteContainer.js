@@ -10,7 +10,7 @@ import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
   render() {
-    const { boards, actions } = this.props;
+    const { boards, tasks, actions } = this.props;
     const { columns } = boards.boardList[boards.whichIsActive];
     return (
       <div className="vertical-layout">
@@ -34,11 +34,13 @@ class TaskChuteContainer extends React.Component {
 
 TaskChuteContainer.propTypes = {
   boards: PropTypes.object.isRequired,
+  tasks: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   boards: state.boards,
+  tasks: state.tasks,
 })
 
 const mapDispatchToProps = (dispatch) => ({

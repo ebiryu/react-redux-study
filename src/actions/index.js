@@ -3,43 +3,43 @@ import * as actionTypes from '../utils/actionTypes';
 export const doSingleTask = (boardNumber, columnNumber, taskNumber) => ({
   type: actionTypes.doSingleTask,
   boardNumber,
-  taskNumber,
   columnNumber,
+  taskId: taskNumber,
 });
 
 export const showEditButton = (boardNumber, columnNumber, taskNumber) => ({
   type: actionTypes.showEditButton,
   boardNumber,
   columnNumber,
-  taskNumber,
+  taskId: taskNumber,
 });
 
 export const hideEditButton = (boardNumber, columnNumber, taskNumber) => ({
   type: actionTypes.hideEditButton,
   boardNumber,
   columnNumber,
-  taskNumber,
+  taskId: taskNumber,
 });
 
 export const enableEditingTask = (boardNumber, columnNumber, taskNumber) => ({
   type: actionTypes.enableEditingTask,
   boardNumber,
   columnNumber,
-  taskNumber,
+  taskId: taskNumber,
 });
 
 export const disableEditingTask = (boardNumber, columnNumber, taskNumber) => ({
   type: actionTypes.disableEditingTask,
   boardNumber,
   columnNumber,
-  taskNumber,
+  taskId: taskNumber,
 });
 
 export const updateEditingTask = (boardNumber, columnNumber, taskNumber, editString) => ({
   type: actionTypes.updateEditingTask,
   boardNumber,
   columnNumber,
-  taskNumber,
+  taskId: taskNumber,
   editString,
 });
 

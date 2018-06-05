@@ -70,58 +70,7 @@ const columns = (state = initialColumnState, action) => {
     }
     return nextColumns
   default:
-    if (action.columnNumber !== undefined) {
-      nextColumns[action.columnNumber] = {
-        ...state[action.columnNumber],
-        tasks: tasks(state[action.columnNumber].tasks, action)
-      }
-    }
     return nextColumns
-  }
-}
-
-const tasks = (state = [], action) => {
-  let nextTasks = state.concat()
-  const selectedTask = state[action.taskNumber]
-  switch (action.type) {
-  case actionTypes.doSingleTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isDone: !selectedTask.isDone,
-    }
-    return nextTasks
-  case actionTypes.showEditButton:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isHovered: true,
-    }
-    return nextTasks
-  case actionTypes.hideEditButton:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isHovered: false,
-    }
-    return nextTasks
-  case actionTypes.enableEditingTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isTaskEditable: true,
-    }
-    return nextTasks
-  case actionTypes.disableEditingTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isTaskEditable: false,
-    }
-    return nextTasks
-  case actionTypes.updateEditingTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      name: action.editString,
-    }
-    return nextTasks
-  default:
-    return state;
   }
 }
 
