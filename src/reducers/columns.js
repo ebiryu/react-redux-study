@@ -25,7 +25,7 @@ const columns = (state = initialColumnState, action) => {
   let nextAllIds = state.allIds.concat()
   const selectedColumn = state.byId[action.columnId]
   switch (action.type) {
-  case actionTypes.createNewTask:
+  case actionTypes.registerNewTaskToColumn:
     nextColumns[action.columnId].tasks.unshift(action.newTaskId)
     nextColumns[action.columnId].inputValue = ''
     return { ...state, byId: nextColumns, }

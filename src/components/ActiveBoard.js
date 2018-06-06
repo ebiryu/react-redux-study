@@ -14,7 +14,6 @@ class ActiveBoard extends React.Component {
         <div className="column-master">
           { boards.byId[boards.currentId].columns.map( (columnId, index) => (
             <Column key={index}
-              boardId={boards.currentId}
               columnId={columnId}
               columnState={columns.byId[columnId]}
               tasks={tasks}

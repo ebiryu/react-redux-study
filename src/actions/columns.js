@@ -6,9 +6,8 @@ export const registerNewTaskToColumn = (columnId, newTaskId) => ({
   newTaskId,
 })
 
-export const updateInputTask = (boardId, columnId, inputTask) => ({
+export const updateInputTask = (columnId, inputTask) => ({
   type: actionTypes.updateInputTask,
-  boardId,
   inputTask,
   columnId,
 })
@@ -18,15 +17,13 @@ export const createNewColumn = (newColumnId) => ({
   newColumnId,
 })
 
-export const updateEditingColumnTitle = (boardId, columnId, changedColumnTitle) => ({
+export const updateEditingColumnTitle = (columnId, changedColumnTitle) => ({
   type: actionTypes.updateEditingColumnTitle,
-  boardId,
   columnId,
   changedColumnTitle,
 })
 
-export const enableEditingColumnTitle = (boardId, columnId) => ({
+export const enableEditingColumnTitle = (columnId) => ({
   type: actionTypes.enableEditingColumnTitle,
-  boardId,
   columnId,
 })
