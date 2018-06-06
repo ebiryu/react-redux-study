@@ -11,7 +11,7 @@ class BoardList extends React.Component {
           { Object.keys(boards.byId).map( (boardId, index) => {
             return (
               <li key={index} onClick={() => actions.openSelectedBoard(boardId)}>
-                <Link to={boards.byId[boardId].id}>
+                <Link to={`board-${boards.byId[boardId].id}`}>
                   {boards.byId[boardId].name}
                 </Link>
               </li>

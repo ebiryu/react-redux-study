@@ -22,10 +22,14 @@ class TaskChuteContainer extends React.Component {
         <div className="content">
           <Switch>
             <Route 
-              path="/:boardname"
-              render={({ match }) => 
-                <ActiveBoard activeBoard={boards.byId[match.params.boardname]} columns={columns} tasks={tasks} actions={actions} />
-              }
+              path="/board-:boardname"
+              render={({ match }) => {
+                if (boards.byId[match.params.boardname] !== undefined) {
+                  return <ActiveBoard activeBoard={boards.byId[match.params.boardname]} columns={columns} tasks={tasks} actions={actions} />
+                } else {
+                  return <div className="task-chute">そのようなboardは存在しません。</div>
+                }
+              }}
             />
             <Route
               exact
