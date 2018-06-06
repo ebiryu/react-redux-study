@@ -18,7 +18,10 @@ class BoardList extends React.Component {
             )
           })}
         </ul>
-        <div onClick={() => actions.createNewBoard(`board${Object.keys(boards.byId).length + 1}`)}>create new board</div>
+        <div
+          className='button__add-board'
+          onClick={() => actions.createNewBoard(`board${Object.keys(boards.byId).length + 1}`)}
+        >create new board</div>
       </div>
     );
   }
