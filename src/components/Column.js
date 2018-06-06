@@ -22,7 +22,7 @@ class Column extends React.Component {
         <NewTaskInput
           inputValue={columnState.inputValue}
           onInputTask={(inputString) => actions.updateInputTask(columnId, inputString)}
-          onSubmitTask={(inputString) => this.addNewTaskToColumn(actions, columnId, `task${tasks.allIds.length}`, inputString)}
+          onSubmitTask={(inputString) => this.addNewTaskToColumn(actions, columnId, `task${tasks.allIds.length + 1}`, inputString)}
         />
         <ul className="column__list">
           { columnState.tasks.map( (taskId, index) => {
