@@ -6,17 +6,20 @@ class BoardList extends React.Component {
   render() {
     const { boards, actions } = this.props;
     return(
-      <ul>
-        { Object.keys(boards.byId).map( (boardId, index) => {
-          return (
-            <li key={index} onClick={() => actions.openSelectedBoard(boardId)}>
-              <Link to={boards.byId[boardId].id}>
-                {boards.byId[boardId].name}
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+      <div>
+        <ul>
+          { Object.keys(boards.byId).map( (boardId, index) => {
+            return (
+              <li key={index} onClick={() => actions.openSelectedBoard(boardId)}>
+                <Link to={boards.byId[boardId].id}>
+                  {boards.byId[boardId].name}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+        <div onClick={() => actions.createNewBoard(`board${Object.keys(boards.byId).length + 1}`)}>create new board</div>
+      </div>
     );
   }
 }
