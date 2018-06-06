@@ -21,7 +21,7 @@ class ActiveBoard extends React.Component {
           )) }
           <div
             className="column column__empty--next"
-            onClick={() => this.addNewColumnToBoard(actions, activeBoard.id, `column${columns.allIds.length + 1}`)}
+            onClick={() => this.addNewColumnToBoard(actions, activeBoard.id, `column${Object.keys(columns.byId).length + 1}`)}
           >
             <div className="column__title--next">add column</div>
           </div>

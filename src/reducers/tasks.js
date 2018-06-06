@@ -31,12 +31,10 @@ const initialTaskState = {
       isTaskEditable: false,
     },
   },
-  allIds: ["task1", "task2", "task3", "task4"],
 }
 
 const tasks = (state = initialTaskState, action) => {
   let nextTasks = Object.assign({}, state.byId)
-  let nextAllIds = state.allIds.concat()
   const selectedTask = state.byId[action.taskId]
   switch (action.type) {
   case actionTypes.doSingleTask:
@@ -82,8 +80,7 @@ const tasks = (state = initialTaskState, action) => {
       isHovered: false,
       isTaskEditable: false,
     }
-    nextAllIds.push(action.newTaskId)
-    return { ...state, byId: nextTasks, allIds: nextAllIds, }
+    return { ...state, byId: nextTasks }
   default:
     return state;
   }

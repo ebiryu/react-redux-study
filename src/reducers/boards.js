@@ -13,7 +13,6 @@ const initialBoardState = {
       columns: ["column2"],
     },
   },
-  allIds: ["board1", "board2"],
   currentId: "board1",
   isActive: false,
 }

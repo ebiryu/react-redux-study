@@ -17,12 +17,10 @@ export const initialColumnState = {
       tasks: ["task3", "task4"],
     },
   },
-  allIds: ["column1", "column2"],
 }
 
 const columns = (state = initialColumnState, action) => {
   let nextColumns = Object.assign({}, state.byId)
-  let nextAllIds = state.allIds.concat()
   const selectedColumn = state.byId[action.columnId]
   switch (action.type) {
   case actionTypes.registerNewTaskToColumn:
@@ -42,8 +40,7 @@ const columns = (state = initialColumnState, action) => {
       inputValue: "",
       tasks: [],
     }
-    nextAllIds.push(action.newColumnId)
-    return { ...state, byId: nextColumns, allIds: nextAllIds, }
+    return { ...state, byId: nextColumns, }
   case actionTypes.updateEditingColumnTitle:
     nextColumns[action.columnId] = {
       ...state.byId[action.columnId],
