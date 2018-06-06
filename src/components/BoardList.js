@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class BoardList extends React.Component {
   render() {
@@ -7,7 +8,13 @@ class BoardList extends React.Component {
     return(
       <ul>
         { Object.keys(boards.byId).map( (boardId, index) => {
-          return <li key={index} onClick={() => actions.openSelectedBoard(boardId)}>{boards.byId[boardId].name}</li>
+          return (
+            <li key={index} onClick={() => actions.openSelectedBoard(boardId)}>
+              <Link to={boards.byId[boardId].id}>
+                {boards.byId[boardId].name}
+              </Link>
+            </li>
+          )
         })}
       </ul>
     );
