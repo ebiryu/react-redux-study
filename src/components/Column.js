@@ -10,7 +10,8 @@ class Column extends React.Component {
     actions.registerNewTaskToColumn(columnId, newTaskId)
   }
   render() {
-    const {columnId, columnState, tasks, actions} = this.props
+    const {columnState, tasks, actions} = this.props
+    const columnId = columnState.id
     return (
       <div className="column">
         <ColumnTitle
@@ -48,7 +49,6 @@ class Column extends React.Component {
 }
 
 Column.propTypes = {
-  columnId: PropTypes.string.isRequired,
   columnState: PropTypes.object.isRequired,
   tasks: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,

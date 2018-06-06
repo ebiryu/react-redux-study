@@ -8,13 +8,12 @@ class ActiveBoard extends React.Component {
     actions.registerNewColumnToBoard(currentBoardId, newColumnId)
   }
   render() {
-    const { boards, columns, tasks, actions } = this.props
+    const { activeBoard, columns, tasks, actions } = this.props
     return (
       <div className="task-chute">
         <div className="column-master">
-          { boards.byId[boards.currentId].columns.map( (columnId, index) => (
+          { activeBoard.columns.map( (columnId, index) => (
             <Column key={index}
-              columnId={columnId}
               columnState={columns.byId[columnId]}
               tasks={tasks}
               actions={actions}
@@ -22,7 +21,7 @@ class ActiveBoard extends React.Component {
           )) }
           <div
             className="column column__empty--next"
-            onClick={() => this.addNewColumnToBoard(actions, boards.currentId, `column${columns.allIds.length + 1}`)}
+            onClick={() => this.addNewColumnToBoard(actions, activeBoard.id, `column${columns.allIds.length + 1}`)}
           >
             <div className="column__title--next">add column</div>
           </div>
@@ -33,7 +32,7 @@ class ActiveBoard extends React.Component {
 }
 
 ActiveBoard.propTypes = {
-  boards: PropTypes.object.isRequired,
+  activeBoard: PropTypes.object.isRequired,
   columns: PropTypes.object.isRequired,
   tasks: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
