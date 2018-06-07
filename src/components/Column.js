@@ -4,6 +4,7 @@ import React from 'react';
 import ColumnItem from '../components/ColumnItem';
 import ColumnTitle from './ColumnTitle';
 import NewTaskInput from './NewTaskInput';
+import typeof actions from '../actions';
 
 type Actions = {
   createNewTask: Function,
@@ -38,7 +39,7 @@ type Props = {
       },
     },
   },
-  actions: Actions,
+  actions: actions,
 }
 
 class Column extends React.Component<Props> {

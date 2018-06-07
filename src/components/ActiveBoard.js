@@ -2,22 +2,7 @@
 
 import React from 'react';
 import Column from './Column';
-
-type Actions = {
-  createNewColumn: Function,
-  registerNewColumnToBoard: Function,
-  createNewTask: Function,
-  registerNewTaskToColumn: Function,
-  enableEditingColumnTitle: Function,
-  updateEditingColumnTitle: Function,
-  updateInputTask: Function,
-  doSingleTask: Function,
-  showEditButton: Function,
-  hideEditButton: Function,
-  enableEditingTask: Function,
-  disableEditingTask: Function,
-  updateEditingTask: Function,
-}
+import typeof actions from '../actions';
 
 type Props = {
   activeBoard: {
@@ -46,11 +31,11 @@ type Props = {
       },
     },
   },
-  actions: Actions,
+  actions: actions,
 }
 
 class ActiveBoard extends React.Component<Props> {
-  addNewColumnToBoard(actions: Actions, currentBoardId: string, newColumnId: string) {
+  addNewColumnToBoard(actions: actions, currentBoardId: string, newColumnId: string) {
     actions.createNewColumn(newColumnId)
     actions.registerNewColumnToBoard(currentBoardId, newColumnId)
   }

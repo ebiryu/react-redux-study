@@ -1,7 +1,8 @@
+// @flow
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import { Route, Switch, Link } from 'react-router-dom';
 
 import ActiveBoard from '../components/ActiveBoard';
@@ -9,7 +10,41 @@ import BoardList from '../components/BoardList';
 import actions from '../actions';
 import '../css/main.css';
 
-class TaskChuteContainer extends React.Component {
+type Props = {
+  boards: {
+    byId: {
+      [id: string]: {
+        id: string,
+        name: string,
+      }
+    }
+  },
+  columns: {
+    byId: {
+      [id: string]: {
+        id: string,
+        name: string,
+        tasks: Array<string>,
+        inputValue: string,
+        isTitleEditable: boolean,
+      }
+    }
+  },
+  tasks: {
+    byId: {
+      [id: string]: {
+        id: string,
+        name: string,
+        isDone: boolean,
+        isHovered: boolean,
+        isTaskEditable: boolean,
+      }
+    }
+  },
+  actions: typeof actions,
+}
+
+class TaskChuteContainer extends React.Component<Props> {
   render() {
     const { boards, columns, tasks, actions } = this.props;
     return (
@@ -43,13 +78,6 @@ class TaskChuteContainer extends React.Component {
       </div>
     )
   }
-}
-
-TaskChuteContainer.propTypes = {
-  boards: PropTypes.object.isRequired,
-  columns: PropTypes.object.isRequired,
-  tasks: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({

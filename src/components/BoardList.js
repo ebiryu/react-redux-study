@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import typeof actions from '../actions';
 
 type Props = {
   boards: {
@@ -12,10 +13,7 @@ type Props = {
       }
     },
   },
-  actions: {
-    openSelectedBoard: Function,
-    createNewBoard: Function,
-  },
+  actions: actions,
 }
 
 class BoardList extends React.Component<Props> {
