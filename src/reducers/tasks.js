@@ -75,6 +75,7 @@ const tasks = (state = initialTaskState, action) => {
     return { ...state, byId: nextTasks }
   case actionTypes.createNewTask:
     nextTasks[action.newTaskId] = {
+      id: action.newTaskId,
       name: action.newTaskName,
       isDone: false,
       isHovered: false,

@@ -13,3 +13,4 @@ export const updateEditingTask = 'UPDATE_EDITING_TASK';
 export const disableEditingTask = 'DISABLE_EDITING_TASK';
 export const openSelectedBoard = 'OPEN_SELECTED_BOARD';
 export const backToBoardList = 'BACK_TO_BOARD_LIST';
+export const createNewBoard = 'CREATE_NEW_BOARD';

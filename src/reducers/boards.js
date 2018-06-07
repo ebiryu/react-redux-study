@@ -34,6 +34,13 @@ const boards = (state = initialBoardState, action) => {
   case actionTypes.registerNewColumnToBoard:
     nextBoards[action.boardId].columns.push(action.newColumnId)
     return { ...state, byId: nextBoards, }
+  case actionTypes.createNewBoard:
+    nextBoards[action.newBoardId] = {
+      id: action.newBoardId,
+      name: "new Board",
+      columns: [],
+    }
+    return { ...state, byId: nextBoards, }
   default:
     return state
   }

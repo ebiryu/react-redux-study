@@ -14,3 +14,8 @@ export const registerNewColumnToBoard = (boardId, newColumnId) => ({
   boardId,
   newColumnId,
 })
+
+export const createNewBoard = (newBoardId) => ({
+  type: actionTypes.createNewBoard,
+  newBoardId,
+})
