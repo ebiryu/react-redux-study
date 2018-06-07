@@ -1,11 +1,48 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import ColumnItem from '../components/ColumnItem';
 import ColumnTitle from './ColumnTitle';
 import NewTaskInput from './NewTaskInput';
 
-class Column extends React.Component {
-  addNewTaskToColumn(actions, columnId, newTaskId, newTaskName) {
+type Actions = {
+  createNewTask: Function,
+  registerNewTaskToColumn: Function,
+  enableEditingColumnTitle: Function,
+  updateEditingColumnTitle: Function,
+  updateInputTask: Function,
+  doSingleTask: Function,
+  showEditButton: Function,
+  hideEditButton: Function,
+  enableEditingTask: Function,
+  disableEditingTask: Function,
+  updateEditingTask: Function,
+}
+
+type Props = {
+  columnState: {
+    id: string,
+    name: string,
+    isTitleEditable: boolean,
+    inputValue: string,
+    tasks: Array<string>,
+  },
+  tasks: {
+    byId: {
+      [id: string]: {
+        id: string,
+        name: string,
+        isDone: boolean,
+        isHovered: boolean,
+        isTaskEditable: boolean,
+      },
+    },
+  },
+  actions: Actions,
+}
+
+class Column extends React.Component<Props> {
+  addNewTaskToColumn(actions: Actions, columnId: string, newTaskId: string, newTaskName: string) {
     actions.createNewTask(newTaskId, newTaskName)
     actions.registerNewTaskToColumn(columnId, newTaskId)
   }
@@ -47,11 +84,5 @@ class Column extends React.Component {
     );
   }
 }
-
-Column.propTypes = {
-  columnState: PropTypes.object.isRequired,
-  tasks: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
-};
 
 export default Column;

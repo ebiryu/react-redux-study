@@ -1,9 +1,56 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import Column from './Column';
 
-class ActiveBoard extends React.Component {
-  addNewColumnToBoard(actions, currentBoardId, newColumnId) {
+type Actions = {
+  createNewColumn: Function,
+  registerNewColumnToBoard: Function,
+  createNewTask: Function,
+  registerNewTaskToColumn: Function,
+  enableEditingColumnTitle: Function,
+  updateEditingColumnTitle: Function,
+  updateInputTask: Function,
+  doSingleTask: Function,
+  showEditButton: Function,
+  hideEditButton: Function,
+  enableEditingTask: Function,
+  disableEditingTask: Function,
+  updateEditingTask: Function,
+}
+
+type Props = {
+  activeBoard: {
+    id: string,
+    columns: Array<string>,
+  },
+  columns: {
+    byId: {
+      [id: string]: {
+        id: string,
+        name: string,
+        isTitleEditable: boolean,
+        inputValue: string,
+        tasks: Array<string>,
+      },
+    },
+  },
+  tasks: {
+    byId: {
+      [id: string]: {
+        id: string,
+        name: string,
+        isDone: boolean,
+        isHovered: boolean,
+        isTaskEditable: boolean,
+      },
+    },
+  },
+  actions: Actions,
+}
+
+class ActiveBoard extends React.Component<Props> {
+  addNewColumnToBoard(actions: Actions, currentBoardId: string, newColumnId: string) {
     actions.createNewColumn(newColumnId)
     actions.registerNewColumnToBoard(currentBoardId, newColumnId)
   }
@@ -29,13 +76,6 @@ class ActiveBoard extends React.Component {
       </div>
     );
   }
-}
-
-ActiveBoard.propTypes = {
-  activeBoard: PropTypes.object.isRequired,
-  columns: PropTypes.object.isRequired,
-  tasks: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
 }
 
 export default ActiveBoard;

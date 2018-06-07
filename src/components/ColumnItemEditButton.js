@@ -1,16 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const ColumnItemEditButton = ({isHovered, isTaskEditable, onClickEditItem}) => {
+import React from 'react';
+
+type Props = {
+  isHovered: boolean,
+  isTaskEditable: boolean,
+  onClickEditItem: Function,
+}
+
+const ColumnItemEditButton = ({isHovered, isTaskEditable, onClickEditItem}: Props) => {
   return (isHovered && !isTaskEditable)
     ? <span className="column__item-edit" onClick={onClickEditItem}>✏</span>
     : <span></span>
 }
-
-ColumnItemEditButton.propTypes = {
-  isHovered: PropTypes.bool.isRequired,
-  isTaskEditable: PropTypes.bool.isRequired,
-  onClickEditItem: PropTypes.func.isRequired,
-};
 
 export default ColumnItemEditButton;

@@ -1,10 +1,24 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ColumnItemText from './ColumnItemText';
 import ColumnItemEditButton from './ColumnItemEditButton';
 
-const ColumnItem = ({taskName, isDone, isHovered, isTaskEditable, onClick, onMouseEnter, onMouseLeave, onClickEditItem, onBlurItem, onEditItem}) => {
+type Props = {
+  taskName: string,
+  isDone: boolean,
+  isHovered: boolean,
+  isTaskEditable: boolean,
+  onClick: Function,
+  onMouseEnter: Function,
+  onMouseLeave: Function,
+  onClickEditItem: Function,
+  onBlurItem: Function,
+  onEditItem: Function,
+}
+
+const ColumnItem = ({taskName, isDone, isHovered, isTaskEditable, onClick, onMouseEnter, onMouseLeave, onClickEditItem, onBlurItem, onEditItem}: Props) => {
   const taskClass = classNames({
     'column__item': true,
     'column__item--done': isDone,
@@ -18,18 +32,5 @@ const ColumnItem = ({taskName, isDone, isHovered, isTaskEditable, onClick, onMou
     </li>
   )
 }
-
-ColumnItem.propTypes = {
-  taskName: PropTypes.string.isRequired,
-  isDone: PropTypes.bool.isRequired,
-  isHovered: PropTypes.bool.isRequired,
-  isTaskEditable: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  onClickEditItem: PropTypes.func.isRequired,
-  onBlurItem: PropTypes.func.isRequired,
-  onEditItem: PropTypes.func.isRequired,
-};
 
 export default ColumnItem;

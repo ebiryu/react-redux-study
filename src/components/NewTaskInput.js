@@ -1,8 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-const NewTaskInput = ({inputValue, onInputTask, onSubmitTask}) => {
-  const submitTask = (e, inputValue) => {
+import React from 'react'
+
+type Props = {
+  inputValue: string,
+  onInputTask: Function,
+  onSubmitTask: Function,
+}
+
+const NewTaskInput = ({inputValue, onInputTask, onSubmitTask}: Props) => {
+  const submitTask = (e: {preventDefault: Function}, inputValue: string) => {
     e.preventDefault();
     onSubmitTask(inputValue);
   };
@@ -13,11 +20,5 @@ const NewTaskInput = ({inputValue, onInputTask, onSubmitTask}) => {
     </form>
   )
 }
-
-NewTaskInput.propTypes = {
-  inputValue: PropTypes.string.isRequired,
-  onInputTask: PropTypes.func.isRequired,
-  onSubmitTask: PropTypes.func.isRequired,
-};
 
 export default NewTaskInput;

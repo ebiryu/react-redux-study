@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-class ColumnTitle extends React.Component {
-  constructor(props) {
+import React, * as ReactTypes from 'react';
+
+type Props = {
+  isTitleEditable: boolean,
+  onClickColumnTitle: Function,
+  editColumnTitle: Function,
+  columnTitle: string,
+}
+
+class ColumnTitle extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
     this.focused = React.createRef();
   }
+  focused: { current: null | ReactTypes.ElementRef<'input'> }
   componentDidUpdate() {
     if (this.focused.current) {
       this.focused.current.focus();
@@ -30,12 +39,5 @@ class ColumnTitle extends React.Component {
       
   }
 }
-
-ColumnTitle.propTypes = {
-  isTitleEditable: PropTypes.bool.isRequired,
-  onClickColumnTitle: PropTypes.func.isRequired,
-  editColumnTitle: PropTypes.func.isRequired,
-  columnTitle: PropTypes.string.isRequired,
-};
 
 export default ColumnTitle;

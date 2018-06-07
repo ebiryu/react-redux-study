@@ -1,8 +1,24 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class BoardList extends React.Component {
+type Props = {
+  boards: {
+    byId: {
+      [id: string]: {
+        id: string,
+        name: string,
+      }
+    },
+  },
+  actions: {
+    openSelectedBoard: Function,
+    createNewBoard: Function,
+  },
+}
+
+class BoardList extends React.Component<Props> {
   render() {
     const { boards, actions } = this.props;
     return(
@@ -25,11 +41,6 @@ class BoardList extends React.Component {
       </div>
     );
   }
-}
-
-BoardList.propTypes = {
-  boards: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
 }
 
 export default BoardList;

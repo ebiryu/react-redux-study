@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
 
-class ColumnItemText extends React.Component {
-  constructor(props) {
+import React, * as ReactTypes from 'react';
+
+type Props = {
+  isTaskEditable: boolean,
+  onEditItem: Function,
+  onBlurItem: Function,
+  taskName: string,
+}
+
+class ColumnItemText extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
     this.focused = React.createRef();
   }
+  focused: { current: null | ReactTypes.ElementRef<'input'> }
   componentDidUpdate() {
     if (this.focused.current) {
       this.focused.current.focus();
@@ -19,13 +28,6 @@ class ColumnItemText extends React.Component {
       </form>
       : <span className="column__item-text">{taskName}</span>
   }
-}
-
-ColumnItemText.propTypes = {
-  isTaskEditable: PropTypes.bool.isRequired,
-  onEditItem: PropTypes.func.isRequired,
-  onBlurItem: PropTypes.func.isRequired,
-  taskName: PropTypes.string.isRequired,
 }
 
 export default ColumnItemText;
