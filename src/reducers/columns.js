@@ -1,128 +1,61 @@
 import * as actionTypes from '../utils/actionTypes';
 
-export const initialColumnState = [
-  {
-    isTitleEditable: false,
-    columnTitle: "title",
-    inputValue: "",
-    tasks: [
-      {
-        name: "ひとつめ",
-        isDone: false,
-        isHovered: false,
-        isTaskEditable: false,
-      },
-      {
-        name: "ふたつめ",
-        isDone: true,
-        isHovered: false,
-        isTaskEditable: false,
-      }
-    ]
+export const initialColumnState = {
+  byId: {
+    "column1": {
+      id: "column1",
+      name: "title1",
+      isTitleEditable: false,
+      inputValue: "",
+      tasks: ["task1", "task2"],
+    },
+    "column2": {
+      id: "column2",
+      name: "title2",
+      isTitleEditable: false,
+      inputValue: "",
+      tasks: ["task3", "task4"],
+    },
   },
-];
+}
 
 const columns = (state = initialColumnState, action) => {
-  let nextColumns = state.concat();
-  const selectedColumn = state[action.columnNumber]
+  let nextColumns = Object.assign({}, state.byId)
+  const selectedColumn = state.byId[action.columnId]
   switch (action.type) {
-  case actionTypes.createNewTask:
-    nextColumns[action.columnNumber] = {
-      ...selectedColumn,
-      inputValue: '',
-      tasks: [
-        {
-          name: action.submittedValue,
-          isDone: false,
-          isHovered: false,
-          isTaskEditable: false,
-        },
-        ...selectedColumn.tasks
-      ]
-    }
-    return nextColumns
+  case actionTypes.registerNewTaskToColumn:
+    nextColumns[action.columnId].tasks.unshift(action.newTaskId)
+    nextColumns[action.columnId].inputValue = ''
+    return { ...state, byId: nextColumns, }
   case actionTypes.updateInputTask:
-    nextColumns[action.columnNumber] = {
-      ...state[action.columnNumber],
+    nextColumns[action.columnId] = {
+      ...selectedColumn,
       inputValue: action.inputTask,
     }
-    return nextColumns
+    return { ...state, byId: nextColumns, }
   case actionTypes.createNewColumn:
-    return [
-      ...state,
-      {
-        isTitleEditable: false,
-        columnTitle: "title",
-        inputValue: "",
-        tasks: [],
-      },
-    ]
+    nextColumns[action.newColumnId] = {
+      name: "title",
+      isTitleEditable: false,
+      inputValue: "",
+      tasks: [],
+    }
+    return { ...state, byId: nextColumns, }
   case actionTypes.updateEditingColumnTitle:
-    nextColumns[action.columnNumber] = {
-      ...state[action.columnNumber],
-      columnTitle: action.changedColumnTitle,
+    nextColumns[action.columnId] = {
+      ...state.byId[action.columnId],
+      name: action.changedColumnTitle,
     }
-    return nextColumns
+    return { ...state, byId: nextColumns, }
   case actionTypes.enableEditingColumnTitle:
-    nextColumns[action.columnNumber] = {
-      ...state[action.columnNumber],
-      isTitleEditable: !state[action.columnNumber].isTitleEditable,
+    nextColumns[action.columnId] = {
+      ...state.byId[action.columnId],
+      isTitleEditable: !state.byId[action.columnId].isTitleEditable,
     }
-    return nextColumns
+    return { ...state, byId: nextColumns, }
   default:
-    if (action.columnNumber !== undefined) {
-      nextColumns[action.columnNumber] = {
-        ...state[action.columnNumber],
-        tasks: tasks(state[action.columnNumber].tasks, action)
-      }
-    }
-    return nextColumns
+    return state
   }
 }
 
-const tasks = (state = [], action) => {
-  let nextTasks = state.concat()
-  const selectedTask = state[action.taskNumber]
-  switch (action.type) {
-  case actionTypes.doSingleTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isDone: !selectedTask.isDone,
-    }
-    return nextTasks
-  case actionTypes.showEditButton:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isHovered: true,
-    }
-    return nextTasks
-  case actionTypes.hideEditButton:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isHovered: false,
-    }
-    return nextTasks
-  case actionTypes.enableEditingTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isTaskEditable: true,
-    }
-    return nextTasks
-  case actionTypes.disableEditingTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      isTaskEditable: false,
-    }
-    return nextTasks
-  case actionTypes.updateEditingTask:
-    nextTasks[action.taskNumber] = {
-      ...selectedTask,
-      name: action.editString,
-    }
-    return nextTasks
-  default:
-    return state;
-  }
-}
-
-export default columns;
+export default columns

@@ -6,8 +6,8 @@ class BoardList extends React.Component {
     const { boards, actions } = this.props;
     return(
       <ul>
-        { boards.boardList.map( (board, index) => {
-          return <li key={index} onClick={() => actions.openSelectedBoard(index)}>{board.name}</li>
+        { Object.keys(boards.byId).map( (boardId, index) => {
+          return <li key={index} onClick={() => actions.openSelectedBoard(boardId)}>{boards.byId[boardId].name}</li>
         })}
       </ul>
     );

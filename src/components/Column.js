@@ -5,35 +5,40 @@ import ColumnTitle from './ColumnTitle';
 import NewTaskInput from './NewTaskInput';
 
 class Column extends React.Component {
+  addNewTaskToColumn(actions, columnId, newTaskId, newTaskName) {
+    actions.createNewTask(newTaskId, newTaskName)
+    actions.registerNewTaskToColumn(columnId, newTaskId)
+  }
   render() {
-    const {boardNumber, columnNumber, columnState, actions} = this.props;
+    const {columnState, tasks, actions} = this.props
+    const columnId = columnState.id
     return (
       <div className="column">
         <ColumnTitle
-          columnTitle={columnState.columnTitle}
+          columnTitle={columnState.name}
           isTitleEditable={columnState.isTitleEditable}
-          onClickColumnTitle={() => actions.enableEditingColumnTitle(boardNumber, columnNumber)}
-          editColumnTitle={(inputString) => actions.updateEditingColumnTitle(boardNumber, columnNumber, inputString)}
+          onClickColumnTitle={() => actions.enableEditingColumnTitle(columnId)}
+          editColumnTitle={(inputString) => actions.updateEditingColumnTitle(columnId, inputString)}
         />
         <NewTaskInput
           inputValue={columnState.inputValue}
-          onInputTask={(inputString) => actions.updateInputTask(boardNumber, columnNumber, inputString)}
-          onSubmitTask={(inputString) => actions.createNewTask(boardNumber, columnNumber, inputString)}
+          onInputTask={(inputString) => actions.updateInputTask(columnId, inputString)}
+          onSubmitTask={(inputString) => this.addNewTaskToColumn(actions, columnId, `task${Object.keys(tasks.byId).length + 1}`, inputString)}
         />
         <ul className="column__list">
-          { columnState.tasks.map( (task, index) => {
+          { columnState.tasks.map( (taskId, index) => {
             return (
               <ColumnItem key={index}
-                taskName={task.name}
-                isDone={task.isDone}
-                isHovered={task.isHovered}
-                isTaskEditable={task.isTaskEditable}
-                onClick={() => actions.doSingleTask(boardNumber, columnNumber, index)}
-                onMouseEnter={() => actions.showEditButton(boardNumber, columnNumber, index)}
-                onMouseLeave={() => actions.hideEditButton(boardNumber, columnNumber, index)}
-                onClickEditItem={() => actions.enableEditingTask(boardNumber, columnNumber, index)}
-                onBlurItem={() => actions.disableEditingTask(boardNumber, columnNumber, index)}
-                onEditItem={event => actions.updateEditingTask(boardNumber, columnNumber, index, event.target.value)}
+                taskName={tasks.byId[taskId].name}
+                isDone={tasks.byId[taskId].isDone}
+                isHovered={tasks.byId[taskId].isHovered}
+                isTaskEditable={tasks.byId[taskId].isTaskEditable}
+                onClick={() => actions.doSingleTask(taskId)}
+                onMouseEnter={() => actions.showEditButton(taskId)}
+                onMouseLeave={() => actions.hideEditButton(taskId)}
+                onClickEditItem={() => actions.enableEditingTask(taskId)}
+                onBlurItem={() => actions.disableEditingTask(taskId)}
+                onEditItem={event => actions.updateEditingTask(taskId, event.target.value)}
               />
             )
           }) }
@@ -44,9 +49,8 @@ class Column extends React.Component {
 }
 
 Column.propTypes = {
-  boardNumber: PropTypes.number.isRequired,
-  columnNumber: PropTypes.number.isRequired,
   columnState: PropTypes.object.isRequired,
+  tasks: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 };
 

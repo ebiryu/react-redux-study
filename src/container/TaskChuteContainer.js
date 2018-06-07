@@ -5,13 +5,12 @@ import PropTypes from 'prop-types';
 
 import ActiveBoard from '../components/ActiveBoard';
 import BoardList from '../components/BoardList';
-import * as actions from '../actions';
+import actions from '../actions';
 import '../css/main.css';
 
 class TaskChuteContainer extends React.Component {
   render() {
-    const { boards, actions } = this.props;
-    const { columns } = boards.boardList[boards.whichIsActive];
+    const { boards, columns, tasks, actions } = this.props;
     return (
       <div className="vertical-layout">
         <div className="header">
@@ -21,7 +20,7 @@ class TaskChuteContainer extends React.Component {
         </div>
         <div className="content">
           { boards.isActive
-            ? <ActiveBoard boardNumber={boards.whichIsActive} columns={columns} actions={actions} />
+            ? <ActiveBoard activeBoard={boards.byId[boards.currentId]} columns={columns} tasks={tasks} actions={actions} />
             : <BoardList boards={boards} actions={actions}/>
           }
         </div>
@@ -34,11 +33,15 @@ class TaskChuteContainer extends React.Component {
 
 TaskChuteContainer.propTypes = {
   boards: PropTypes.object.isRequired,
+  columns: PropTypes.object.isRequired,
+  tasks: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   boards: state.boards,
+  columns: state.columns,
+  tasks: state.tasks,
 })
 
 const mapDispatchToProps = (dispatch) => ({
