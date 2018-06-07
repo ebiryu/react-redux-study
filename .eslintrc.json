@@ -8,12 +8,14 @@
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 9,
     "sourceType": "module"
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "rules": {
     "no-console": "off",
