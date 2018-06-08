@@ -3,12 +3,10 @@
 import React from 'react';
 import Column from './Column';
 import typeof actions from '../actions';
+import type { TypeOfBoard } from '../reducers/boards'
 
 type Props = {
-  activeBoard: {
-    id: string,
-    columns: Array<string>,
-  },
+  activeBoard: TypeOfBoard,
   columns: {
     byId: {
       [id: string]: {

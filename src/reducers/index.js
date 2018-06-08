@@ -1,3 +1,5 @@
+// @flow
+
 import { combineReducers } from 'redux';
 import boards from './boards';
 import columns from './columns';
