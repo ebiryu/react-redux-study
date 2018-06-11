@@ -3,7 +3,7 @@
 import * as actionTypes from '../utils/actionTypes';
 import type { ColumnAction } from '../actions/columns';
 
-type TypeOfColumn = {
+export type TypeOfColumn = {
   +id: string,
   +name: string,
   +isTitleEditable: boolean,
@@ -37,29 +37,28 @@ export const initialColumnState = {
 }
 
 const columns = (state: TypeOfColumns = initialColumnState, action: ColumnAction): TypeOfColumns => {
-  let nextColumns: { [id: string]: TypeOfColumn } = Object.assign({}, state.byId)
+  let nextColumns = Object.assign({}, state.byId)
   const action_columnId = action.columnId ? action.columnId : ""
   const action_newTaskId = action.newTaskId ? action.newTaskId : ""
-  const action_newColumnId = action.newColumnId ? action.newColumnId : ""
   switch (action.type) {
   case actionTypes.registerNewTaskToColumn: {
-    nextColumns[action_columnId] = {
-      ...nextColumns[action_columnId],
-      tasks: [action_newTaskId, ...nextColumns[action_columnId].tasks],
+    nextColumns[action.columnId] = {
+      ...state.byId[action_columnId],
+      tasks: [action_newTaskId, ...state.byId[action_columnId].tasks],
       inputValue: '',
     }
     return { ...state, byId: nextColumns, }
   }
   case actionTypes.updateInputTask: {
-    nextColumns[action_columnId] = {
-      ...nextColumns[action_columnId],
+    nextColumns[action.columnId] = {
+      ...state.byId[action_columnId],
       inputValue: action.inputTask,
     }
     return { ...state, byId: nextColumns, }
   }
   case actionTypes.createNewColumn:
-    nextColumns[action_newColumnId] = {
-      id: action_newColumnId,
+    nextColumns[action.newColumnId] = {
+      id: action.newColumnId,
       name: "title",
       isTitleEditable: false,
       inputValue: "",
@@ -67,13 +66,13 @@ const columns = (state: TypeOfColumns = initialColumnState, action: ColumnAction
     }
     return { ...state, byId: nextColumns, }
   case actionTypes.updateEditingColumnTitle:
-    nextColumns[action_columnId] = {
+    nextColumns[action.columnId] = {
       ...state.byId[action_columnId],
       name: action.changedColumnTitle,
     }
     return { ...state, byId: nextColumns, }
   case actionTypes.enableEditingColumnTitle:
-    nextColumns[action_columnId] = {
+    nextColumns[action.columnId] = {
       ...state.byId[action_columnId],
       isTitleEditable: !state.byId[action_columnId].isTitleEditable,
     }

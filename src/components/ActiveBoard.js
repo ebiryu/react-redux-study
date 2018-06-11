@@ -4,31 +4,13 @@ import React from 'react';
 import Column from './Column';
 import typeof actions from '../actions';
 import type { TypeOfBoard } from '../reducers/boards'
+import type { TypeOfColumns } from '../reducers/columns'
+import type { TypeOfTasks } from '../reducers/tasks'
 
 type Props = {
   activeBoard: TypeOfBoard,
-  columns: {
-    byId: {
-      [id: string]: {
-        id: string,
-        name: string,
-        isTitleEditable: boolean,
-        inputValue: string,
-        tasks: Array<string>,
-      },
-    },
-  },
-  tasks: {
-    byId: {
-      [id: string]: {
-        id: string,
-        name: string,
-        isDone: boolean,
-        isHovered: boolean,
-        isTaskEditable: boolean,
-      },
-    },
-  },
+  columns: TypeOfColumns,
+  tasks: TypeOfTasks,
   actions: actions,
 }
 

@@ -5,45 +5,17 @@ import ColumnItem from '../components/ColumnItem';
 import ColumnTitle from './ColumnTitle';
 import NewTaskInput from './NewTaskInput';
 import typeof actions from '../actions';
-
-type Actions = {
-  createNewTask: Function,
-  registerNewTaskToColumn: Function,
-  enableEditingColumnTitle: Function,
-  updateEditingColumnTitle: Function,
-  updateInputTask: Function,
-  doSingleTask: Function,
-  showEditButton: Function,
-  hideEditButton: Function,
-  enableEditingTask: Function,
-  disableEditingTask: Function,
-  updateEditingTask: Function,
-}
+import type { TypeOfColumn } from '../reducers/columns'
+import type { TypeOfTasks } from '../reducers/tasks'
 
 type Props = {
-  columnState: {
-    id: string,
-    name: string,
-    isTitleEditable: boolean,
-    inputValue: string,
-    tasks: Array<string>,
-  },
-  tasks: {
-    byId: {
-      [id: string]: {
-        id: string,
-        name: string,
-        isDone: boolean,
-        isHovered: boolean,
-        isTaskEditable: boolean,
-      },
-    },
-  },
+  columnState: TypeOfColumn,
+  tasks: TypeOfTasks,
   actions: actions,
 }
 
 class Column extends React.Component<Props> {
-  addNewTaskToColumn(actions: Actions, columnId: string, newTaskId: string, newTaskName: string) {
+  addNewTaskToColumn(actions: actions, columnId: string, newTaskId: string, newTaskName: string) {
     actions.createNewTask(newTaskId, newTaskName)
     actions.registerNewTaskToColumn(columnId, newTaskId)
   }

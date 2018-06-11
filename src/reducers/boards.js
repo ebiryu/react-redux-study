@@ -4,17 +4,17 @@ import * as actionTypes from '../utils/actionTypes';
 import type { BoardAction } from '../actions/boards'
 
 export type TypeOfBoard = {
-  id: string,
-  name: string,
-  columns: Array<string>,
+  +id: string,
+  +name: string,
+  +columns: Array<string>,
 }
 
 export type TypeOfBoards = {
-  byId: {
-    [id: string]: TypeOfBoard,
+  +byId: {
+    +[id: string]: TypeOfBoard,
   },
-  currentId: string,
-  isActive: boolean,
+  +currentId: string,
+  +isActive: boolean,
 }
 
 const initialBoardState = {
@@ -36,6 +36,7 @@ const initialBoardState = {
 
 const boards = (state: TypeOfBoards = initialBoardState, action: BoardAction): TypeOfBoards => {
   let nextBoards = Object.assign({}, state.byId)
+  const action_boardId = action.boardId ? action.boardId : ""
   switch (action.type) {
   case actionTypes.openSelectedBoard:
     return {
@@ -49,7 +50,9 @@ const boards = (state: TypeOfBoards = initialBoardState, action: BoardAction): T
       isActive: false,
     }
   case actionTypes.registerNewColumnToBoard:
-    nextBoards[action.boardId].columns.push(action.newColumnId)
+    nextBoards[action.boardId] = {
+      columns: [ ...state.byId[action_boardId].columns, action.newColumnId ]
+    }
     return { ...state, byId: nextBoards, }
   case actionTypes.createNewBoard:
     nextBoards[action.newBoardId] = {

@@ -3,16 +3,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import typeof actions from '../actions';
+import type { TypeOfBoards } from '../reducers/boards';
 
 type Props = {
-  boards: {
-    byId: {
-      [id: string]: {
-        id: string,
-        name: string,
-      }
-    },
-  },
+  boards: TypeOfBoards,
   actions: actions,
 }
 

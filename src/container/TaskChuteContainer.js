@@ -9,38 +9,14 @@ import ActiveBoard from '../components/ActiveBoard';
 import BoardList from '../components/BoardList';
 import actions from '../actions';
 import '../css/main.css';
+import type { TypeOfBoards } from '../reducers/boards';
+import type { TypeOfColumns } from '../reducers/columns';
+import type { TypeOfTasks } from '../reducers/tasks';
 
 type Props = {
-  boards: {
-    byId: {
-      [id: string]: {
-        id: string,
-        name: string,
-      }
-    }
-  },
-  columns: {
-    byId: {
-      [id: string]: {
-        id: string,
-        name: string,
-        tasks: Array<string>,
-        inputValue: string,
-        isTitleEditable: boolean,
-      }
-    }
-  },
-  tasks: {
-    byId: {
-      [id: string]: {
-        id: string,
-        name: string,
-        isDone: boolean,
-        isHovered: boolean,
-        isTaskEditable: boolean,
-      }
-    }
-  },
+  boards: TypeOfBoards,
+  columns: TypeOfColumns,
+  tasks: TypeOfTasks,
   actions: typeof actions,
 }
 
