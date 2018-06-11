@@ -1,4 +1,21 @@
+// @flow
+
 import * as actionTypes from '../utils/actionTypes';
+import type { TaskAction } from '../actions/tasks';
+
+type TypeOfTask = {
+  +id: string,
+  +name: string,
+  +isDone: boolean,
+  +isHovered: boolean,
+  +isTaskEditable: boolean,
+}
+
+export type TypeOfTasks = {
+  +byId: {
+    +[id: string]: TypeOfTask,
+  }
+}
 
 const initialTaskState = {
   byId: {
@@ -33,9 +50,10 @@ const initialTaskState = {
   },
 }
 
-const tasks = (state = initialTaskState, action) => {
+const tasks = (state: TypeOfTasks = initialTaskState, action: TaskAction): TypeOfTasks => {
   let nextTasks = Object.assign({}, state.byId)
-  const selectedTask = state.byId[action.taskId]
+  const action_taskId = action.taskId ? action.taskId : ""
+  const selectedTask = state.byId[action_taskId]
   switch (action.type) {
   case actionTypes.doSingleTask:
     nextTasks[action.taskId] = {

@@ -3,9 +3,9 @@
 import { combineReducers, Reducer } from 'redux';
 import boards, { type TypeOfBoards } from './boards';
 import columns, { type TypeOfColumns } from './columns';
-import tasks from './tasks';
+import tasks, { type TypeOfTasks } from './tasks';
 
-const reducer: Reducer<{boards: TypeOfBoards, columns: TypeOfColumns, tasks: empty}> = combineReducers({
+const reducer: Reducer<{boards: TypeOfBoards, columns: TypeOfColumns, tasks: TypeOfTasks}> = combineReducers({
   boards,
   columns,
   tasks,

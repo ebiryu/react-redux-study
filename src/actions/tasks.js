@@ -2,38 +2,46 @@
 
 import * as actionTypes from '../utils/actionTypes'
 
-export const doSingleTask = (taskId: string) => ({
+export type TaskAction = {
+  +type: string,
+  +taskId?: string,
+  +editString?: string,
+  +newTaskId?: string,
+  +newTaskName?: string,
+}
+
+export const doSingleTask = (taskId: string): TaskAction => ({
   type: actionTypes.doSingleTask,
   taskId,
 })
 
-export const showEditButton = (taskId: string) => ({
+export const showEditButton = (taskId: string): TaskAction => ({
   type: actionTypes.showEditButton,
   taskId,
 })
 
-export const hideEditButton = (taskId: string) => ({
+export const hideEditButton = (taskId: string): TaskAction => ({
   type: actionTypes.hideEditButton,
   taskId,
 })
 
-export const enableEditingTask = (taskId: string) => ({
+export const enableEditingTask = (taskId: string): TaskAction => ({
   type: actionTypes.enableEditingTask,
   taskId,
 })
 
-export const disableEditingTask = (taskId: string) => ({
+export const disableEditingTask = (taskId: string): TaskAction => ({
   type: actionTypes.disableEditingTask,
   taskId,
 })
 
-export const updateEditingTask = (taskId: string, editString: string) => ({
+export const updateEditingTask = (taskId: string, editString: string): TaskAction => ({
   type: actionTypes.updateEditingTask,
   taskId,
   editString,
 })
 
-export const createNewTask = (newTaskId: string, newTaskName: string) => ({
+export const createNewTask = (newTaskId: string, newTaskName: string): TaskAction => ({
   type: actionTypes.createNewTask,
   newTaskId,
   newTaskName,
