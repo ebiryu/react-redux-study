@@ -1,11 +1,11 @@
 // @flow
 
-import { combineReducers } from 'redux';
-import boards from './boards';
-import columns from './columns';
+import { combineReducers, Reducer } from 'redux';
+import boards, { type TypeOfBoards } from './boards';
+import columns, { type TypeOfColumns } from './columns';
 import tasks from './tasks';
 
-const reducer = combineReducers({
+const reducer: Reducer<{boards: TypeOfBoards, columns: TypeOfColumns, tasks: empty}> = combineReducers({
   boards,
   columns,
   tasks,
