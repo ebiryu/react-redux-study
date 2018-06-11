@@ -1,13 +1,7 @@
 // @flow
 
 import * as actionTypes from '../utils/actionTypes'
-
-export type BoardAction = {
-  +type: string,
-  +boardId?: string,
-  +newColumnId?: string,
-  +newBoardId?: string,
-}
+import type { BoardAction } from '../types/Board'
 
 export const openSelectedBoard = (boardId: string): BoardAction => ({
   type: actionTypes.openSelectedBoard,

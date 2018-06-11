@@ -3,9 +3,9 @@
 import React from 'react';
 import Column from './Column';
 import typeof actions from '../actions';
-import type { TypeOfBoard } from '../reducers/boards'
-import type { TypeOfColumns } from '../reducers/columns'
-import type { TypeOfTasks } from '../reducers/tasks'
+import type { TypeOfBoard } from '../types/Board'
+import type { TypeOfColumns } from '../types/Column'
+import type { TypeOfTasks } from '../types/Task'
 
 type Props = {
   activeBoard: TypeOfBoard,

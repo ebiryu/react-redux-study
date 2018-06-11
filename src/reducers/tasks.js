@@ -1,21 +1,7 @@
 // @flow
 
-import * as actionTypes from '../utils/actionTypes';
-import type { TaskAction } from '../actions/tasks';
-
-type TypeOfTask = {
-  +id: string,
-  +name: string,
-  +isDone: boolean,
-  +isHovered: boolean,
-  +isTaskEditable: boolean,
-}
-
-export type TypeOfTasks = {
-  +byId: {
-    +[id: string]: TypeOfTask,
-  }
-}
+import * as actionTypes from '../utils/actionTypes'
+import type { TypeOfTasks, TaskAction } from '../types/Task'
 
 const initialTaskState = {
   byId: {

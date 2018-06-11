@@ -1,21 +1,7 @@
 // @flow
 
 import * as actionTypes from '../utils/actionTypes';
-import type { ColumnAction } from '../actions/columns';
-
-export type TypeOfColumn = {
-  +id: string,
-  +name: string,
-  +isTitleEditable: boolean,
-  +inputValue: string,
-  +tasks: Array<string>,
-}
-
-export type TypeOfColumns = {
-  +byId: {
-    +[id: string]: TypeOfColumn,
-  }
-}
+import type { TypeOfColumns, ColumnAction } from '../types/Column'
 
 export const initialColumnState = {
   byId: {

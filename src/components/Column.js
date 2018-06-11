@@ -5,8 +5,8 @@ import ColumnItem from '../components/ColumnItem';
 import ColumnTitle from './ColumnTitle';
 import NewTaskInput from './NewTaskInput';
 import typeof actions from '../actions';
-import type { TypeOfColumn } from '../reducers/columns'
-import type { TypeOfTasks } from '../reducers/tasks'
+import type { TypeOfColumn } from '../types/Column'
+import type { TypeOfTasks } from '../types/Task'
 
 type Props = {
   columnState: TypeOfColumn,

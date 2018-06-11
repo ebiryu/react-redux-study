@@ -1,14 +1,7 @@
 // @flow
 
 import * as actionTypes from '../utils/actionTypes'
-
-export type TaskAction = {
-  +type: string,
-  +taskId?: string,
-  +editString?: string,
-  +newTaskId?: string,
-  +newTaskName?: string,
-}
+import type { TaskAction } from '../types/Task'
 
 export const doSingleTask = (taskId: string): TaskAction => ({
   type: actionTypes.doSingleTask,

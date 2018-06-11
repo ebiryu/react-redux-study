@@ -1,21 +1,7 @@
 // @flow
 
-import * as actionTypes from '../utils/actionTypes';
-import type { BoardAction } from '../actions/boards'
-
-export type TypeOfBoard = {
-  +id: string,
-  +name: string,
-  +columns: Array<string>,
-}
-
-export type TypeOfBoards = {
-  +byId: {
-    +[id: string]: TypeOfBoard,
-  },
-  +currentId: string,
-  +isActive: boolean,
-}
+import * as actionTypes from '../utils/actionTypes'
+import type { TypeOfBoards, BoardAction } from '../types/Board'
 
 const initialBoardState = {
   byId: {

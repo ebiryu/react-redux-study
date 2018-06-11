@@ -1,15 +1,7 @@
 // @flow
 
 import * as actionTypes from '../utils/actionTypes'
-
-export type ColumnAction = {
-  +type: string,
-  +columnId?: string,
-  +newTaskId?: string,
-  +inputTask?: string,
-  +newColumnId?: string,
-  +changedColumnTitle?: string,
-}
+import type { ColumnAction } from '../types/Column'
 
 export const registerNewTaskToColumn = (columnId: string, newTaskId: string): ColumnAction => ({
   type: actionTypes.registerNewTaskToColumn,

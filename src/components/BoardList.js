@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import typeof actions from '../actions';
-import type { TypeOfBoards } from '../reducers/boards';
+import type { TypeOfBoards } from '../types/Board';
 
 type Props = {
   boards: TypeOfBoards,

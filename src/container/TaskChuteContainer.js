@@ -9,9 +9,9 @@ import ActiveBoard from '../components/ActiveBoard';
 import BoardList from '../components/BoardList';
 import actions from '../actions';
 import '../css/main.css';
-import type { TypeOfBoards } from '../reducers/boards';
-import type { TypeOfColumns } from '../reducers/columns';
-import type { TypeOfTasks } from '../reducers/tasks';
+import type { TypeOfBoards } from '../types/Board';
+import type { TypeOfColumns } from '../types/Column';
+import type { TypeOfTasks } from '../types/Task';
 
 type Props = {
   boards: TypeOfBoards,
