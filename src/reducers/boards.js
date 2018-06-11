@@ -34,13 +34,7 @@ const initialBoardState = {
   isActive: false,
 }
 
-type BoardActions = 
-  | BoardAction<typeof actionTypes.openSelectedBoard>
-  | BoardAction<typeof actionTypes.backToBoardList>
-  | BoardAction<typeof actionTypes.registerNewColumnToBoard>
-  | BoardAction<typeof actionTypes.createNewBoard>
-
-const boards = (state: TypeOfBoards = initialBoardState, action: BoardActions) => {
+const boards = (state: TypeOfBoards = initialBoardState, action: BoardAction): TypeOfBoards => {
   let nextBoards = Object.assign({}, state.byId)
   switch (action.type) {
   case actionTypes.openSelectedBoard:
