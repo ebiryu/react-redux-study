@@ -1,5 +1,8 @@
 // @flow
 
+import type { ExtractReturn } from './Function'
+import * as columnActions from '../actions/columns'
+
 export type TypeOfColumn = {
   +id: string,
   +name: string,
@@ -14,11 +17,9 @@ export type TypeOfColumns = {
   }
 }
 
-export type ColumnAction = {
-  +type: string,
-  +columnId?: string,
-  +newTaskId?: string,
-  +inputTask?: string,
-  +newColumnId?: string,
-  +changedColumnTitle?: string,
-}
+export type ColumnActions = 
+  | ExtractReturn<typeof columnActions.registerNewTaskToColumn>
+  | ExtractReturn<typeof columnActions.updateInputTask>
+  | ExtractReturn<typeof columnActions.createNewColumn>
+  | ExtractReturn<typeof columnActions.updateEditingColumnTitle>
+  | ExtractReturn<typeof columnActions.enableEditingColumnTitle>

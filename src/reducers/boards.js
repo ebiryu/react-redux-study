@@ -1,7 +1,7 @@
 // @flow
 
 import * as actionTypes from '../utils/actionTypes'
-import type { TypeOfBoards, BoardAction } from '../types/Board'
+import type { TypeOfBoards, BoardActions } from '../types/Board'
 
 const initialBoardState = {
   byId: {
@@ -20,9 +20,8 @@ const initialBoardState = {
   isActive: false,
 }
 
-const boards = (state: TypeOfBoards = initialBoardState, action: BoardAction): TypeOfBoards => {
+const boards = (state: TypeOfBoards = initialBoardState, action: BoardActions): TypeOfBoards => {
   let nextBoards = Object.assign({}, state.byId)
-  const action_boardId = action.boardId ? action.boardId : ""
   switch (action.type) {
   case actionTypes.openSelectedBoard:
     return {
@@ -37,7 +36,7 @@ const boards = (state: TypeOfBoards = initialBoardState, action: BoardAction): T
     }
   case actionTypes.registerNewColumnToBoard:
     nextBoards[action.boardId] = {
-      columns: [ ...state.byId[action_boardId].columns, action.newColumnId ]
+      columns: [ ...state.byId[action.boardId].columns, action.newColumnId ]
     }
     return { ...state, byId: nextBoards, }
   case actionTypes.createNewBoard:

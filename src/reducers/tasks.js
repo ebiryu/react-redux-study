@@ -1,7 +1,7 @@
 // @flow
 
 import * as actionTypes from '../utils/actionTypes'
-import type { TypeOfTasks, TaskAction } from '../types/Task'
+import type { TypeOfTasks, TaskActions } from '../types/Task'
 
 const initialTaskState = {
   byId: {
@@ -36,44 +36,42 @@ const initialTaskState = {
   },
 }
 
-const tasks = (state: TypeOfTasks = initialTaskState, action: TaskAction): TypeOfTasks => {
+const tasks = (state: TypeOfTasks = initialTaskState, action: TaskActions): TypeOfTasks => {
   let nextTasks = Object.assign({}, state.byId)
-  const action_taskId = action.taskId ? action.taskId : ""
-  const selectedTask = state.byId[action_taskId]
   switch (action.type) {
   case actionTypes.doSingleTask:
     nextTasks[action.taskId] = {
-      ...selectedTask,
-      isDone: !selectedTask.isDone,
+      ...state.byId[action.taskId],
+      isDone: !state.byId[action.taskId].isDone,
     }
     return { ...state, byId: nextTasks }
   case actionTypes.showEditButton:
     nextTasks[action.taskId] = {
-      ...selectedTask,
+      ...state.byId[action.taskId],
       isHovered: true,
     }
     return { ...state, byId: nextTasks }
   case actionTypes.hideEditButton:
     nextTasks[action.taskId] = {
-      ...selectedTask,
+      ...state.byId[action.taskId],
       isHovered: false,
     }
     return { ...state, byId: nextTasks }
   case actionTypes.enableEditingTask:
     nextTasks[action.taskId] = {
-      ...selectedTask,
+      ...state.byId[action.taskId],
       isTaskEditable: true,
     }
     return { ...state, byId: nextTasks }
   case actionTypes.disableEditingTask:
     nextTasks[action.taskId] = {
-      ...selectedTask,
+      ...state.byId[action.taskId],
       isTaskEditable: false,
     }
     return { ...state, byId: nextTasks }
   case actionTypes.updateEditingTask:
     nextTasks[action.taskId] = {
-      ...selectedTask,
+      ...state.byId[action.taskId],
       name: action.editString,
     }
     return { ...state, byId: nextTasks }
