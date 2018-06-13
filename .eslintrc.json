@@ -25,6 +25,9 @@
   "globals": {
     "exports": true,
     "process": true,
-    "module": true
+    "module": true,
+    "describe": true,
+    "it": true,
+    "expect": true
   }
 }
