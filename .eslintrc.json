@@ -6,7 +6,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -15,7 +16,8 @@
   },
   "plugins": [
     "react",
-    "flowtype"
+    "flowtype",
+    "jest"
   ],
   "rules": {
     "no-console": "off",
@@ -25,9 +27,6 @@
   "globals": {
     "exports": true,
     "process": true,
-    "module": true,
-    "describe": true,
-    "it": true,
-    "expect": true
+    "module": true
   }
 }
