@@ -1,11 +1,17 @@
 import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
+import Enzyme, { shallow, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import ColumnTitle from '../ColumnTitle'
 
 Enzyme.configure({ adapter: new Adapter })
 
 describe('Column Title ', () => {
+  let testFn
+
+  beforeEach(() => {
+    testFn = jest.fn()
+  })
+
   it('子コンポーネントが存在すること(not editable)', () => {
     const columnTitle = shallow(<ColumnTitle isTitleEditable={false}/>)
     expect(columnTitle.find('span').length).toBe(1)
@@ -21,8 +27,33 @@ describe('Column Title ', () => {
     expect(columnTitle.text()).toEqual('title')
   })
   it('クリック時', () => {
-    const columnTitle = shallow(<ColumnTitle isTitleEditable={false}/>)
+    const columnTitle = shallow(<ColumnTitle isTitleEditable={false} onClickColumnTitle={testFn}/>)
     columnTitle.find('span').simulate('click')
+    // クリックしても'span'のまま。reduxには影響しない模様。
     expect(columnTitle.find('span').exists()).toBe(true)
+    expect(testFn).toHaveBeenCalled
+  })
+  it('submit時', () => {
+    const columnTitle = shallow(<ColumnTitle isTitleEditable={true} onClickColumnTitle={testFn}/>)
+    columnTitle.find('form').simulate('submit')
+    expect(testFn).toHaveBeenCalled
+  })
+  it('blur時', () => {
+    const columnTitle = shallow(<ColumnTitle isTitleEditable={true} onClickColumnTitle={testFn}/>)
+    columnTitle.find('input').simulate('blur')
+    expect(testFn).toHaveBeenCalled
+  })
+  it('titleを入力時', () => {
+    const columnTitle = shallow(<ColumnTitle isTitleEditable={true} editColumnTitle={testFn}/>)
+    columnTitle.find('input').simulate('change', {target: {value: '7'}})
+    expect(testFn).toHaveBeenCalled
+  })
+  it('autofocus', () => {
+    const columnTitle = mount(<ColumnTitle isTitleEditable={true}/>)
+    const { focused } = columnTitle.instance()
+    const spy = jest.spyOn(focused.current, 'focus')
+
+    columnTitle.instance().componentDidUpdate()
+    expect(focused.current.focus).toHaveBeenCalledTimes(1)
   })
 })
