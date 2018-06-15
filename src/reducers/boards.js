@@ -36,6 +36,7 @@ const boards = (state: TypeOfBoards = initialBoardState, action: BoardActions): 
     }
   case actionTypes.registerNewColumnToBoard:
     nextBoards[action.boardId] = {
+      ...state.byId[action.boardId],
       columns: [ ...state.byId[action.boardId].columns, action.newColumnId ]
     }
     return { ...state, byId: nextBoards, }
