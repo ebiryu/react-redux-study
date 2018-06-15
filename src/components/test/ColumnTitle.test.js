@@ -56,4 +56,9 @@ describe('Column Title ', () => {
     columnTitle.instance().componentDidUpdate()
     expect(focused.current.focus).toHaveBeenCalledTimes(1)
   })
+
+  it('snapshot', () => {
+    const columnTitle = shallow(<ColumnTitle isTitleEditable={true} onClickColumnTitle={testFn}/>)
+    expect(columnTitle).toMatchSnapshot()
+  })
 })
