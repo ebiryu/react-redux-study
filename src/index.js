@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import TaskChuteContainer from './container/TaskChuteContainer';
 import reducer from './reducers'
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer)
 const root = document.getElementById('root')
@@ -24,4 +24,8 @@ if (root) {
   )
 }
 
-registerServiceWorker()
+// registerServiceWorker()
+
+if (process.env.NODE_ENV === 'production' && navigator.serviceWorker) {
+  navigator.serviceWorker.register('/service-worker.js')
+}
