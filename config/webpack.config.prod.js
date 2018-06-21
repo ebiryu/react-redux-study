@@ -332,9 +332,9 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new workboxPlugin.InjectManifest({
-      swSrc: 'src/sw.js',
+    new workboxPlugin.GenerateSW({
       swDest: 'service-worker.js',
+      navigateFallback: '/', 
     }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
